@@ -1,0 +1,10 @@
+{
+  "name": "USZMate",
+  "short_name": "USZMate",
+  "description": "USZ Digital Kişisel AI Asistan",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#0a1628",
+  "theme_color": "#0a1628",
+  "orientation": "portrait"
+}

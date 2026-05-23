@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0a1628" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="USZMate" />
+  <title>USZMate</title>
+  <link rel="manifest" href="manifest.json" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0a1628;
+      --navy-mid: #0f2040;
+      --navy-light: #162d55;
+      --yellow: #f5c800;
+      --yellow-glow: rgba(245,200,0,0.15);
+      --text: #ffffff;
+      --text-muted: rgba(255,255,255,0.5);
+      --border: rgba(245,200,0,0.2);
+      --input-bg: rgba(255,255,255,0.05);
+      --radius: 16px;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+    body { font-family:'Outfit',sans-serif; background:var(--navy); color:var(--text); height:100dvh; display:flex; flex-direction:column; overflow:hidden; }
+    body::before { content:''; position:fixed; inset:0; background:radial-gradient(ellipse at 20% 20%,rgba(245,200,0,0.06) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(245,200,0,0.04) 0%,transparent 50%); pointer-events:none; z-index:0; }
+
+    /* LOGIN */
+    #loginScreen { position:fixed; inset:0; background:var(--navy); display:flex; flex-direction:column; align-items:center; justify-content:center; z-index:100; gap:24px; padding:40px; }
+    #loginScreen::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 40%,rgba(245,200,0,0.08) 0%,transparent 60%); pointer-events:none; }
+    .login-logo { font-family:'Bebas Neue',sans-serif; font-size:72px; color:var(--yellow); letter-spacing:8px; text-shadow:0 0 40px rgba(245,200,0,0.4); animation:pulse-glow 3s ease-in-out infinite; }
+    @keyframes pulse-glow { 0%,100%{text-shadow:0 0 40px rgba(245,200,0,0.4);}50%{text-shadow:0 0 60px rgba(245,200,0,0.7);} }
+    .login-subtitle { font-size:12px; color:var(--text-muted); letter-spacing:3px; text-transform:uppercase; margin-top:-16px; }
+    .login-ai-notice { font-size:10px; color:rgba(245,200,0,0.4); text-align:center; margin-top:-8px; }
+    .login-form { display:flex; flex-direction:column; gap:14px; width:100%; max-width:320px; position:relative; z-index:1; }
+    .login-input { background:var(--input-bg); border:1px solid var(--border); border-radius:12px; padding:14px 20px; color:var(--text); font-family:'Outfit',sans-serif; font-size:16px; outline:none; text-align:center; letter-spacing:4px; transition:border-color 0.2s,box-shadow 0.2s; }
+    .login-input:focus { border-color:var(--yellow); box-shadow:0 0 20px rgba(245,200,0,0.15); }
+    .login-input::placeholder { letter-spacing:1px; color:var(--text-muted); }
+    .login-btn { background:var(--yellow); color:var(--navy); border:none; border-radius:12px; padding:14px; font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:2px; cursor:pointer; transition:transform 0.15s,box-shadow 0.15s; }
+    .login-btn:active{transform:scale(0.97);}
+    .login-btn:hover{box-shadow:0 4px 20px rgba(245,200,0,0.4);}
+    .login-error { color:#ff4d4d; font-size:13px; text-align:center; min-height:18px; }
+
+    /* APP */
+    #app { display:none; flex-direction:column; height:100dvh; position:relative; z-index:1; }
+    #app.visible { display:flex; }
+
+    /* HEADER */
+    header { display:flex; align-items:flex-start; justify-content:space-between; padding:10px 14px 6px; background:rgba(10,22,40,0.95); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); flex-shrink:0; }
+    .header-left { display:flex; flex-direction:column; gap:1px; }
+    .header-brand { font-size:9px; color:var(--text-muted); letter-spacing:1.5px; text-transform:uppercase; line-height:1.6; }
+    .header-brand span { display:block; }
+    .header-ai-notice { font-size:8px; color:rgba(245,200,0,0.4); letter-spacing:0.5px; }
+    .header-center { position:absolute; left:50%; transform:translateX(-50%); top:6px; text-align:center; }
+    .header-title { font-family:'Bebas Neue',sans-serif; font-size:38px; color:var(--yellow); letter-spacing:8px; line-height:1; text-shadow:0 0 20px rgba(245,200,0,0.3); }
+    .header-right { display:flex; flex-direction:column; align-items:flex-end; gap:4px; }
+    .lang-selector { display:flex; gap:3px; }
+    .lang-btn { background:transparent; border:1px solid transparent; border-radius:6px; padding:3px 7px; color:var(--text-muted); font-family:'Outfit',sans-serif; font-size:10px; font-weight:600; cursor:pointer; transition:all 0.2s; }
+    .lang-btn.active { background:var(--yellow-glow); border-color:var(--yellow); color:var(--yellow); }
+    .lang-btn:hover:not(.active) { color:var(--text); border-color:var(--border); }
+
+    /* LOCATION */
+    .location-bar { background:rgba(245,200,0,0.08); border-bottom:1px solid var(--border); padding:5px 14px; display:flex; align-items:center; gap:6px; flex-shrink:0; cursor:pointer; }
+    .location-bar .loc-text { font-size:11px; color:var(--text-muted); }
+
+    /* WELCOME */
+    #welcomeBanner { background:#ffffff; padding:8px 10px 6px; flex-shrink:0; width:100%; }
+    .welcome-title { font-size:12px; font-weight:600; color:var(--navy); margin-bottom:5px; text-align:center; }
+    .welcome-grid { display:grid; grid-template-columns:1fr 1fr; gap:3px; margin-bottom:5px; }
+    .welcome-item { background:#f0f4ff; border:1px solid #dde4f5; border-radius:6px; padding:4px 7px; font-size:10px; color:var(--navy); font-weight:500; line-height:1.3; }
+    .welcome-buy { background:var(--navy); border-radius:7px; padding:7px 12px; font-size:12px; color:var(--yellow); font-weight:600; text-align:center; line-height:1.5; width:100%; display:block; margin-bottom:4px; }
+    .welcome-nearby { background:#f0f4ff; border:1px solid #dde4f5; border-radius:7px; padding:6px 10px; font-size:10px; color:var(--navy); font-weight:500; line-height:1.5; width:100%; display:block; }
+    .welcome-divider { height:3px; background:var(--yellow); flex-shrink:0; width:100%; }
+
+    /* CHAT */
+    #chatArea { flex:1; overflow-y:auto; padding:14px; display:flex; flex-direction:column; gap:10px; scroll-behavior:smooth; background:#e8e8e8; border-bottom:2px solid var(--yellow); }
+    #chatArea::-webkit-scrollbar{width:4px;}
+    #chatArea::-webkit-scrollbar-thumb{background:#aaa;border-radius:2px;}
+    .message { max-width:88%; padding:11px 14px; border-radius:var(--radius); font-size:14px; line-height:1.6; animation:fadeUp 0.3s ease; color:#111; }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);} }
+    .message.ai { background:#ffffff; border:1px solid #ccc; align-self:flex-start; border-bottom-left-radius:4px; }
+    .message.user { background:var(--navy); border:1px solid var(--navy-light); align-self:flex-end; border-bottom-right-radius:4px; color:var(--yellow); }
+    .message a { color:#1a56db; text-decoration:underline; text-underline-offset:3px; }
+    .message.user a { color:var(--yellow); }
+    .typing-indicator { display:flex; gap:5px; padding:12px 14px; background:#ffffff; border:1px solid #ccc; border-radius:var(--radius); border-bottom-left-radius:4px; align-self:flex-start; animation:fadeUp 0.3s ease; }
+    .typing-dot { width:7px; height:7px; background:var(--navy); border-radius:50%; animation:typing 1.2s infinite; opacity:0.4; }
+    .typing-dot:nth-child(2){animation-delay:0.2s;}
+    .typing-dot:nth-child(3){animation-delay:0.4s;}
+    @keyframes typing { 0%,100%{opacity:0.4;transform:translateY(0);}50%{opacity:1;transform:translateY(-4px);} }
+
+    /* IMAGE */
+    .image-preview-wrap { padding:6px 14px 0; flex-shrink:0; background:rgba(10,22,40,0.95); }
+    .image-preview{position:relative;display:inline-block;}
+    .image-preview img { height:56px; width:56px; object-fit:cover; border-radius:8px; border:1px solid var(--border); }
+    .image-preview-remove { position:absolute; top:-6px; right:-6px; background:#ff4d4d; border:none; border-radius:50%; width:18px; height:18px; color:white; font-size:11px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+
+    /* INPUT */
+    .input-area { padding:10px 14px; padding-bottom:max(10px,env(safe-area-inset-bottom)); background:rgba(10,22,40,0.95); backdrop-filter:blur(10px); flex-shrink:0; }
+    .input-row { display:flex; gap:7px; align-items:flex-end; }
+    #textInput { flex:1; background:var(--input-bg); border:1px solid var(--border); border-radius:12px; padding:11px 14px; color:var(--text); font-family:'Outfit',sans-serif; font-size:14px; outline:none; resize:none; max-height:120px; min-height:44px; transition:border-color 0.2s; line-height:1.5; }
+    #textInput:focus{border-color:rgba(245,200,0,0.5);}
+    #textInput::placeholder{color:var(--text-muted);}
+    .icon-btn { width:44px; height:44px; border-radius:11px; border:1px solid var(--border); background:var(--input-bg); color:var(--yellow); cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all 0.2s; font-size:17px; }
+    .icon-btn:active{transform:scale(0.92);}
+    .icon-btn:hover{background:var(--yellow-glow);border-color:var(--yellow);}
+    .icon-btn.recording { background:rgba(255,50,50,0.15); border-color:#ff4d4d; color:#ff4d4d; animation:rec-pulse 1s ease-in-out infinite; }
+    @keyframes rec-pulse { 0%,100%{box-shadow:0 0 0 0 rgba(255,77,77,0.4);}50%{box-shadow:0 0 0 8px rgba(255,77,77,0);} }
+    .send-btn { width:44px; height:44px; border-radius:11px; border:none; background:var(--yellow); color:var(--navy); cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all 0.2s; font-size:17px; }
+    .send-btn:active{transform:scale(0.92);}
+    .send-btn:hover{box-shadow:0 4px 16px rgba(245,200,0,0.4);}
+    #fileInput{display:none;}
+  </style>
+</head>
+<body>
+
+<div id="loginScreen">
+  <div class="login-logo">USZ&nbsp;MATE</div>
+  <div class="login-subtitle">USZ Digital — Kisisel Asistan</div>
+  <div class="login-ai-notice">Bu uygulama yapay zeka teknolojisi ile calismaktadir.</div>
+  <div class="login-form">
+    <input type="password" class="login-input" id="passwordInput" placeholder="Sifrenizi girin" />
+    <button class="login-btn" id="loginBtn" onclick="checkPassword()">GIRIS YAP</button>
+    <div class="login-error" id="loginError"></div>
+  </div>
+</div>
+
+<div id="app">
+  <header>
+    <div class="header-left">
+      <div class="header-brand"><span>USZ Digital</span><span>USZ Fabula</span></div>
+      <div class="header-ai-notice">Yapay zeka ile calisir</div>
+    </div>
+    <div class="header-center"><div class="header-title">USZ&nbsp;MATE</div></div>
+    <div class="header-right">
+      <div class="lang-selector">
+        <button class="lang-btn active" onclick="setLang('tr',this)">TR</button>
+        <button class="lang-btn" onclick="setLang('en',this)">EN</button>
+        <button class="lang-btn" onclick="setLang('ru',this)">RU</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="location-bar" onclick="updateLocation()">
+    <span>📍</span>
+    <span class="loc-text" id="locationText">Konum aliniyor...</span>
+    <span style="font-size:9px;color:var(--text-muted);margin-left:auto;">degistir</span>
+  </div>
+
+  <div id="welcomeBanner">
+    <div class="welcome-title" id="welcomeTitle">🤖 Size nasil yardim edebilirim?</div>
+    <div class="welcome-grid">
+      <div class="welcome-item" id="wi0">✈️ Ucus ara & bilet linki</div>
+      <div class="welcome-item" id="wi1">💱 Doviz kuru ogren</div>
+      <div class="welcome-item" id="wi2">📷 Fotograf analiz et</div>
+      <div class="welcome-item" id="wi3">🎬 Sinema & konser & tiyatro</div>
+      <div class="welcome-item" id="wi4">🛒 Urun fiyati karsilastir</div>
+      <div class="welcome-item" id="wi5">🌍 Ceviri yap</div>
+      <div class="welcome-item" id="wi6">🚗 Araba bul & fiyat</div>
+      <div class="welcome-item" id="wi7">🏠 Kiralik & satilik ev bul</div>
+    </div>
+    <div class="welcome-buy" id="welcomeBuy">🛍️ Satin almak istediginizi asagiya yazin — size o urunu hangi sitede alabileceginizi ve satin alim linkini hemen onunuze getireyim.</div>
+    <div class="welcome-nearby" id="welcomeNearby">📍 Banka, hastane, eczane, otel, restoran, kafe, magaza — her neyse, bulundugunu yere en yakinini adres, calisma saati ve navigasyon linki ile getiririm.</div>
+  </div>
+  <div class="welcome-divider"></div>
+
+  <div id="chatArea"></div>
+
+  <div class="image-preview-wrap" id="imagePreviewWrap" style="display:none;">
+    <div class="image-preview">
+      <img id="imagePreview" src="" alt="preview" />
+      <button class="image-preview-remove" onclick="removeImage()">x</button>
+    </div>
+  </div>
+
+  <div class="input-area">
+    <div class="input-row">
+      <textarea id="textInput" placeholder="Mesajinizi yazin..." rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+      <button class="icon-btn" onclick="document.getElementById('fileInput').click()">📷</button>
+      <button class="icon-btn" id="micBtn" onclick="toggleMic()">🎤</button>
+      <button class="send-btn" onclick="sendMessage()">➤</button>
+    </div>
+  </div>
+  <input type="file" id="fileInput" accept="image/*" capture="environment" onchange="handleImage(event)" />
+</div>
+
+<script>
+  const PASSWORD = "uszmate2026";
+
+  const T = {
+    tr: {
+      placeholder:"Mesajinizi yazin...", loginPlaceholder:"Sifrenizi girin", loginBtn:"GIRIS YAP",
+      wrongPass:"Hatali sifre. Tekrar deneyin.", welcomeTitle:"🤖 Size nasil yardim edebilirim?",
+      items:["✈️ Ucus ara & bilet linki","💱 Doviz kuru ogren","📷 Fotograf analiz et","🎬 Sinema & konser & tiyatro","🛒 Urun fiyati karsilastir","🌍 Ceviri yap","🚗 Araba bul & fiyat","🏠 Kiralik & satilik ev bul"],
+      buy:"🛍️ Satin almak istediginizi asagiya yazin — size o urunu hangi sitede alabileceginizi ve satin alim linkini hemen onunuze getireyim.",
+      nearby:"📍 Banka, hastane, eczane, otel, restoran, kafe, magaza — her neyse, bulundugunu yere en yakinini adres, calisma saati ve navigasyon linki ile getiririm.",
+      locating:"Konum aliniyor...", connErr:"Baglanti hatasi. Lutfen tekrar deneyin.",
+      noMic:"Tarayiciniz sesli komut desteklemiyor. Chrome kullanin.",
+      photoAdded:"[Fotograf eklendi]", photoAnalyze:"Bu fotografi analiz et ve acikla.", systemLang:"Turkce"
+    },
+    en: {
+      placeholder:"Type your message...", loginPlaceholder:"Enter your password", loginBtn:"LOGIN",
+      wrongPass:"Wrong password. Please try again.", welcomeTitle:"🤖 How can I help you?",
+      items:["✈️ Search flights & ticket link","💱 Check exchange rates","📷 Analyze a photo","🎬 Cinema & concerts & theater","🛒 Compare product prices","🌍 Translate text","🚗 Find a car & price","🏠 Find rental & sale properties"],
+      buy:"🛍️ Type what you want to buy — I will find where you can get it and bring you the direct purchase link right away.",
+      nearby:"📍 Bank, hospital, pharmacy, hotel, restaurant, cafe, store — whatever it is, I will find the nearest one with address, opening hours and navigation link.",
+      locating:"Getting location...", connErr:"Connection error. Please try again.",
+      noMic:"Your browser does not support voice commands. Use Chrome.",
+      photoAdded:"[Photo added]", photoAnalyze:"Analyze and explain this photo.", systemLang:"English"
+    },
+    ru: {
+      placeholder:"Введите сообщение...", loginPlaceholder:"Введите пароль", loginBtn:"ВОЙТИ",
+      wrongPass:"Неверный пароль. Попробуйте снова.", welcomeTitle:"🤖 Чем могу помочь?",
+      items:["✈️ Поиск рейсов и билет","💱 Курс валют","📷 Анализ фото","🎬 Кино, концерты, театр","🛒 Сравнение цен","🌍 Перевод текста","🚗 Найти авто и цену","🏠 Аренда и продажа жилья"],
+      buy:"🛍️ Напишите, что хотите купить — я найду, где это можно приобрести, и дам прямую ссылку для покупки.",
+      nearby:"📍 Банк, больница, аптека, отель, ресторан, кафе, магазин — что угодно, найду ближайшее с адресом, часами работы и ссылкой на навигацию.",
+      locating:"Определение местоположения...", connErr:"Ошибка подключения. Попробуйте снова.",
+      noMic:"Ваш браузер не поддерживает голосовые команды. Используйте Chrome.",
+      photoAdded:"[Фото добавлено]", photoAnalyze:"Проанализируй и объясни это фото.", systemLang:"Русском"
+    }
+  };
+
+  let currentLang='tr', conversationHistory=[], selectedImageBase64=null;
+  let isRecording=false, recognition=null, isLoading=false, userLocation=null;
+
+  function checkPassword() {
+    const input = document.getElementById('passwordInput').value;
+    if (input === PASSWORD) {
+      document.getElementById('loginScreen').style.display='none';
+      document.getElementById('app').classList.add('visible');
+      getLocation();
+    } else {
+      document.getElementById('loginError').textContent = T[currentLang].wrongPass;
+      document.getElementById('passwordInput').value='';
+    }
+  }
+
+  document.getElementById('passwordInput').addEventListener('keydown', e => { if(e.key==='Enter') checkPassword(); });
+
+  function getLocation() {
+    if (!navigator.geolocation) { document.getElementById('locationText').textContent='Konum desteklenmiyor'; return; }
+    navigator.geolocation.getCurrentPosition(async pos => {
+      const lat=pos.coords.latitude, lon=pos.coords.longitude;
+      userLocation={lat,lon};
+      try {
+        const res = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`);
+        const data = await res.json();
+        const city = data.address.city||data.address.town||data.address.village||'';
+        const country = data.address.country||'';
+        document.getElementById('locationText').textContent=`${city}, ${country}`;
+        userLocation.name=`${city}, ${country}`;
+      } catch { document.getElementById('locationText').textContent=`${lat.toFixed(2)}, ${lon.toFixed(2)}`; }
+    }, () => { document.getElementById('locationText').textContent=T[currentLang].locating; });
+  }
+
+  function updateLocation() { document.getElementById('locationText').textContent=T[currentLang].locating; getLocation(); }
+
+  function setLang(lang, btn) {
+    currentLang=lang;
+    document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+    if(btn) btn.classList.add('active');
+    const L=T[lang];
+    document.getElementById('textInput').placeholder=L.placeholder;
+    document.getElementById('welcomeTitle').textContent=L.welcomeTitle;
+    document.getElementById('welcomeBuy').textContent=L.buy;
+    document.getElementById('welcomeNearby').textContent=L.nearby;
+    L.items.forEach((text,i)=>{ const el=document.getElementById('wi'+i); if(el) el.textContent=text; });
+  }
+
+  function addMessage(role, content) {
+    const chatArea=document.getElementById('chatArea');
+    const div=document.createElement('div');
+    div.className=`message ${role}`;
+    div.innerHTML=formatMessage(content);
+    chatArea.appendChild(div);
+    chatArea.scrollTop=chatArea.scrollHeight;
+    return div;
+  }
+
+  function formatMessage(text) {
+    const urlRegex=/(https?:\/\/[^\s]+)/g;
+    return text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(urlRegex,'<a href="$1" target="_blank" rel="noopener">$1</a>')
+      .replace(/\n/g,'<br>');
+  }
+
+  function showTyping() {
+    const chatArea=document.getElementById('chatArea');
+    const div=document.createElement('div');
+    div.className='typing-indicator'; div.id='typingIndicator';
+    div.innerHTML='<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+    chatArea.appendChild(div); chatArea.scrollTop=chatArea.scrollHeight;
+  }
+
+  function hideTyping() { const t=document.getElementById('typingIndicator'); if(t) t.remove(); }
+
+  async function sendMessage() {
+    if(isLoading) return;
+    const input=document.getElementById('textInput');
+    const text=input.value.trim();
+    if(!text && !selectedImageBase64) return;
+    input.value=''; autoResize(input);
+    const L=T[currentLang];
+    let userContent=[];
+    if(selectedImageBase64) {
+      userContent.push({type:"image",source:{type:"base64",media_type:"image/jpeg",data:selectedImageBase64}});
+      addMessage('user',(text||'')+' '+L.photoAdded);
+    } else { addMessage('user',text); }
+    if(text) userContent.push({type:"text",text});
+    else if(selectedImageBase64) userContent.push({type:"text",text:L.photoAnalyze});
+    removeImage();
+    conversationHistory.push({role:"user",content:userContent.length===1&&userContent[0].type==='text'?text:userContent});
+    isLoading=true; showTyping();
+    const locInfo=userLocation?`Kullanicinin konumu: ${userLocation.name||userLocation.lat+','+userLocation.lon}`:'Konum yok';
+    const systemPrompt=`Sen USZMate'sin — USZ Digital tarafindan gelistirilmis kisisel AI asistan. ${locInfo}. Kullanici sana ${L.systemLang} konusuyor, sen de ayni dilde cevap ver. Her zaman web arastirmasi yap. Ucus, etkinlik, urun, yemek, araba, ev konularinda direkt linkler ekle. Fiyat karsilastirmalarinda ucuzdan pahaliya sirala. Konum bazli aramalarda kullanicinin sehrini kullan. Kisa ve net cevaplar ver.`;
+    try {
+      const response = await fetch('/api/chat', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          model:"claude-sonnet-4-20250514",
+          max_tokens:1000,
+          system:systemPrompt,
+          tools:[{type:"web_search_20250305",name:"web_search"}],
+          messages:conversationHistory
+        })
+      });
+      const data=await response.json();
+      hideTyping();
+      const reply=data.content?.filter(b=>b.type==='text').map(b=>b.text).join('\n')||L.connErr;
+      addMessage('ai',reply);
+      conversationHistory.push({role:"assistant",content:reply});
+    } catch(err) { hideTyping(); addMessage('ai',T[currentLang].connErr); }
+    isLoading=false;
+  }
+
+  function autoResize(el) { el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,120)+'px'; }
+  function handleKey(e) { if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();} }
+
+  function handleImage(event) {
+    const file=event.target.files[0]; if(!file) return;
+    const reader=new FileReader();
+    reader.onload=e=>{ selectedImageBase64=e.target.result.split(',')[1]; document.getElementById('imagePreview').src=e.target.result; document.getElementById('imagePreviewWrap').style.display='block'; };
+    reader.readAsDataURL(file); event.target.value='';
+  }
+
+  function removeImage() { selectedImageBase64=null; document.getElementById('imagePreviewWrap').style.display='none'; document.getElementById('imagePreview').src=''; }
+
+  function toggleMic() {
+    const L=T[currentLang];
+    if(!('webkitSpeechRecognition' in window)&&!('SpeechRecognition' in window)){addMessage('ai',L.noMic);return;}
+    const btn=document.getElementById('micBtn');
+    if(isRecording){recognition.stop();isRecording=false;btn.classList.remove('recording');btn.textContent='🎤';return;}
+    const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+    recognition=new SR();
+    recognition.lang=currentLang==='tr'?'tr-TR':currentLang==='en'?'en-US':'ru-RU';
+    recognition.interimResults=false; recognition.maxAlternatives=1;
+    recognition.onstart=()=>{isRecording=true;btn.classList.add('recording');btn.textContent='⏹';};
+    recognition.onresult=e=>{const t=e.results[0][0].transcript;document.getElementById('textInput').value=t;autoResize(document.getElementById('textInput'));sendMessage();};
+    recognition.onend=()=>{isRecording=false;btn.classList.remove('recording');btn.textContent='🎤';};
+    recognition.onerror=()=>{isRecording=false;btn.classList.remove('recording');btn.textContent='🎤';};
+    recognition.start();
+  }
+</script>
+</body>
+</html>
