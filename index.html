@@ -331,7 +331,7 @@
       const reply=data.content?.filter(b=>b.type==='text').map(b=>b.text).join('\n')||L.connErr;
       addMessage('ai',reply);
       conversationHistory.push({role:"assistant",content:reply});
-    } catch(err) { hideTyping(); addMessage('ai',T[currentLang].connErr); }
+    } catch(err) { hideTyping(); addMessage('ai', 'HATA: ' + err.message); }
     isLoading=false;
   }
 
