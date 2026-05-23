@@ -313,7 +313,7 @@
     conversationHistory.push({role:"user",content:userContent.length===1&&userContent[0].type==='text'?text:userContent});
     isLoading=true; showTyping();
     const locInfo=userLocation?`Kullanicinin konumu: ${userLocation.name||userLocation.lat+','+userLocation.lon}`:'Konum yok';
-    const systemPrompt=`Sen USZMate. ${locInfo}. ${L.systemLang} konusuyoruz. Web ara. Sinema sorgusunda max 5 film listele, isim+mekan+fiyat+link. Ucus/urun/araba/ev ucuzdan pahaliya sirala+link. Kisa cevap ver.`;
+    const systemPrompt=`Sen USZMate. ${locInfo}. ${L.systemLang} konusuyoruz. Web ara. Sinema sorgusunda max 5 film listele, isim+mekan+fiyat+link. Ucus/urun/araba/ev ucuzdan pahaliya sirala+link. Kisa cevap ver. Film isimlerini secilen dile cevir, ceviri yoksa orijinal ismiyle yaz.`;
     try {
       const response = await fetch('/api/chat', {
         method:'POST',
