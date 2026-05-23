@@ -328,7 +328,8 @@
       });
       const data=await response.json();
       hideTyping();
-      const reply=data.content?.filter(b=>b.type==='text').map(b=>b.text).join('\n')||L.connErr;
+      const textBlocks=data.content?.filter(b=>b.type==='text')||[];
+      const reply=textBlocks.length>0?textBlocks.map(b=>b.text).join('\n'):(data.error?'Hata: '+data.error:L.connErr);
       addMessage('ai',reply);
       conversationHistory.push({role:"assistant",content:reply});
     } catch(err) { hideTyping(); addMessage('ai', 'HATA: ' + err.message); }
