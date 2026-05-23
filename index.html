@@ -297,7 +297,7 @@
     removeImage();
     conversationHistory.push({role:"user",content:userContent.length===1&&userContent[0].type==='text'?text:userContent});
     isLoading=true; showTyping();
-    const locInfo=userLocation?`Kullanicinin konumu: ${userLocation.name||userLocation.lat+','+userLocation.lon}`:'Konum yok';
+    const locInfo=userLocation?`Kullanicinin tam GPS koordinatlari: lat=${userLocation.lat}, lon=${userLocation.lon}, sehir=${userLocation.name||'bilinmiyor'}. Bu koordinatlari kullanarak kullanicinin tam konumuna en yakin sonuclari getir.`:`Kullanicinin konumu alinamadi, genel sonuclar ver.`;
     const systemPrompt=`Sen USZMate. ${locInfo}. ${L.systemLang} konusuyoruz. Web ara. Sinema sorgusunda max 5 film listele, isim+mekan+fiyat+link. Ucus/urun/araba/ev ucuzdan pahaliya sirala+link. Kisa cevap ver. Film isimlerini secilen dile cevir, ceviri yoksa orijinal ismiyle yaz.`;
     try {
       const response = await fetch('/api/chat', {
