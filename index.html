@@ -226,17 +226,25 @@
   function getLocation() {
     if (!navigator.geolocation) { document.getElementById('locationText').textContent='Konum desteklenmiyor'; return; }
     navigator.geolocation.getCurrentPosition(async pos => {
-      const lat=pos.coords.latitude, lon=pos.coords.longitude;
-      userLocation={lat,lon};
+      const lat=pos.coords.latitude;
+      const lon=pos.coords.longitude;
+      userLocation={lat:lat, lon:lon, name:''};
       try {
-        const res = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`);
+        const res = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&accept-language=tr`);
         const data = await res.json();
         const city = data.address.city||data.address.town||data.address.village||'';
         const country = data.address.country||'';
-        document.getElementById('locationText').textContent=`${city}, ${country}`;
         userLocation.name=`${city}, ${country}`;
-      } catch { document.getElementById('locationText').textContent=`${lat.toFixed(2)}, ${lon.toFixed(2)}`; }
-    }, () => { document.getElementById('locationText').textContent=T[currentLang].locating; });
+        userLocation.lat=lat;
+        userLocation.lon=lon;
+        document.getElementById('locationText').textContent=`${city}, ${country}`;
+      } catch {
+        userLocation.name=`${lat.toFixed(4)}, ${lon.toFixed(4)}`;
+        userLocation.lat=lat;
+        userLocation.lon=lon;
+        document.getElementById('locationText').textContent=userLocation.name;
+      }
+    }, () => { document.getElementById('locationText').textContent='Konum alinamadi'; });
   }
 
   function updateLocation() { document.getElementById('locationText').textContent=T[currentLang].locating; getLocation(); }
