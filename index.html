@@ -255,10 +255,8 @@
     if(btn) btn.classList.add('active');
     const L=T[lang];
     document.getElementById('textInput').placeholder=L.placeholder;
-    document.getElementById('welcomeTitle').textContent=L.welcomeTitle;
-    document.getElementById('welcomeBuy').textContent=L.buy;
-    document.getElementById('welcomeNearby').textContent=L.nearby;
-    L.items.forEach((text,i)=>{ const el=document.getElementById('wi'+i); if(el) el.textContent=text; });
+    if(document.getElementById('infoTitle')) document.getElementById('infoTitle').textContent=L.infoTitle;
+    if(document.getElementById('infoText')) document.getElementById('infoText').textContent=L.infoText;
   }
 
   function addMessage(role, content) {
