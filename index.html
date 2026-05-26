@@ -212,9 +212,9 @@
       infoText:"Eğer sıfır araç istiyorsan dilediğin markanın satış mağazasına ve web sitesine ulaşabilirsin. 2. el araç istiyorsan satış galerisine ve internet satış mağaza linkine ulaşabilirsin. Sıfır ev istiyorsan inşaat firmalarının listesine ve web sitelerine ulaşabilirsin. 2. el ev ve kiralık ev arıyorsan internet satış ve kiralık ev internet linkine ulaşabilirsin. Bulunduğun şehirde aradığın banka, hastane, eczane, otel, restoran, kafe, mağazaların isimlerine ve internet linklerine ulaşabilirsin. Uçak bilet fiyatlarını görebilir ve alım linkine ulaşabilirsin. Bulunduğun lokasyondaki sinema, konser, tiyatro gibi etkinlikleri görebilir bilet alım linkine ulaşabilirsin. Bulunduğun lokasyonun para biriminin diğer para birimleri ile olan kurunu görebilirsin. Dilediğin her türlü ürünün fiyatlarına ve alım linkine ulaşabilirsin. Her dilden her dile çeviri yapabilirsin. Dilediğin yemeği satan kafe ve restoranın internet linkine ulaşabilir ve sipariş verebilirsin. Fotoğraf butonu ile dilediğin şeyin resmini çekip hakkında ayrıntılı bilgi edinebilirsin. Dilersen yazı ile dilersen mikrofon tuşu ile sesli komut verebilirsin.",
       btns:["Araç","Ev","Nerede","Uçuş","Sinema","Tiyatro","Konser","Döviz","Ürün","Çeviri","Yemek","Kamera"],
       btnMsgs:{
-        sinema:"Bulunduğum lokasyonda şu an gösterimde olan en yüksek reytingli 5 filmi listele. Her film için: Film adı (Türkçe çevirisi varsa yanına yaz), başrol oyuncusu, IMDb puanı ve 2 cümle konu özeti. Kesinlikle hiçbir link ekleme. Geçmiş tarihli film gösterme.",
-        tiyatro:"Bulunduğum lokasyonda şu an sahnede olan en iyi 5 tiyatro oyununu listele. Her oyun için: Oyun adı, başrol oyuncusu ve 2 cümle konu özeti. Kesinlikle hiçbir link ekleme.",
-        konser:"Bulunduğum lokasyondaki önümüzdeki 3 ay içindeki konserleri listele. Her konser için: Sanatçı adı, tarih ve mekan. Kesinlikle hiçbir link ekleme. Geçmiş tarihli konser gösterme.",
+        sinema:"Bulunduğum lokasyonda şu an gösterimde olan en yüksek reytingli 5 filmi listele. Sadece: Film adı, başrol oyuncusu ve direkt bilet alım linki. Başka bilgi ekleme. Geçmiş tarihli film gösterme.",
+        tiyatro:"Bulunduğum lokasyonda şu an sahnede olan en iyi 5 tiyatro oyununu listele. Sadece: Oyun adı, başrol oyuncusu ve direkt bilet alım linki. Başka bilgi ekleme.",
+        konser:"Bulunduğum lokasyondaki önümüzdeki 3 ay içindeki konserleri listele. Sadece: Sanatçı adı, tarih ve direkt bilet alım linki. Geçmiş tarihli konser gösterme. Başka bilgi ekleme.",
         doviz:"Bulunduğum lokasyonun para biriminin 1 dolar karşılığını göster. Sadece bu bilgiyi ver, başka açıklama ekleme."
       }
     },
@@ -303,7 +303,9 @@
         const data=await res.json();
         const city=data.address.city||data.address.town||data.address.village||'';
         const country=data.address.country||'';
+        const countryCode=data.address.country_code||'';
         userLocation.name=`${city}, ${country}`;
+        userLocation.countryCode=countryCode;
         userLocation.lat=lat; userLocation.lon=lon;
         document.getElementById('locationText').textContent=`${city}, ${country}`;
       } catch {
@@ -341,10 +343,31 @@
     }
   }
 
+  const TICKET_SITES = {
+    kz: [{n:'Ticketon',u:'https://ticketon.kz'},{n:'Kinopark',u:'https://kinopark.kz'},{n:'Topbilet',u:'https://topbilet.kz'}],
+    tr: [{n:'Biletix',u:'https://www.biletix.com'},{n:'Passo',u:'https://www.passo.com.tr'},{n:'Bubilet',u:'https://www.bubilet.com'}],
+    ae: [{n:'Platinumlist',u:'https://platinumlist.net'},{n:'Ticketmaster UAE',u:'https://www.ticketmaster.ae'},{n:'Live Nation ME',u:'https://livenation.me'}],
+    us: [{n:'Ticketmaster',u:'https://www.ticketmaster.com'},{n:'Songkick',u:'https://www.songkick.com'},{n:'StubHub',u:'https://www.stubhub.com'}],
+    gb: [{n:'Ticketmaster UK',u:'https://www.ticketmaster.co.uk'},{n:'See Tickets',u:'https://www.seetickets.com'},{n:'Songkick',u:'https://www.songkick.com'}],
+    de: [{n:'Eventim',u:'https://www.eventim.de'},{n:'Ticketmaster DE',u:'https://www.ticketmaster.de'},{n:'Reservix',u:'https://www.reservix.de'}],
+    ru: [{n:'Kassir',u:'https://www.kassir.ru'},{n:'Afisha',u:'https://www.afisha.ru'},{n:'Ticketland',u:'https://www.ticketland.ru'}],
+    fr: [{n:'Fnac Tickets',u:'https://www.fnacspectacles.com'},{n:'Ticketmaster FR',u:'https://www.ticketmaster.fr'},{n:'Digitick',u:'https://www.digitick.com'}],
+    jp: [{n:'Ticket Pia',u:'https://t.pia.jp'},{n:'Lawson Ticket',u:'https://l-tike.com'},{n:'e+',u:'https://eplus.jp'}],
+    au: [{n:'Ticketek',u:'https://www.ticketek.com.au'},{n:'Ticketmaster AU',u:'https://www.ticketmaster.com.au'},{n:'Moshtix',u:'https://www.moshtix.com.au'}],
+    default: [{n:'Ticketmaster',u:'https://www.ticketmaster.com'},{n:'Songkick',u:'https://www.songkick.com'},{n:'StubHub',u:'https://www.stubhub.com'}]
+  };
+
+  function getTicketSitesHtml() {
+    const cc = (userLocation?.countryCode||'').toLowerCase();
+    const sites = TICKET_SITES[cc] || TICKET_SITES.default;
+    const labels = {tr:'🎟️ Bilet Siteleri:', en:'🎟️ Ticket Sites:', ru:'🎟️ Сайты билетов:'};
+    const label = labels[currentLang] || labels.tr;
+    const links = sites.map(s=>`<a href="${s.u}" target="_blank" rel="noopener">${s.n}</a>`).join(' &nbsp;|&nbsp; ');
+    return `\n\n---\n${label} ${links}`;
+  }
+
   function handleMainBtn(type) {
     const L=T[currentLang];
-    const now=new Date();
-    const dateStr=now.toLocaleDateString(currentLang==='tr'?'tr-TR':currentLang==='en'?'en-US':'ru-RU',{day:'numeric',month:'long',year:'numeric'});
     
     let msg='';
     if(type==='sinema') msg=L.btnMsgs.sinema;
@@ -360,8 +383,27 @@
       msg=msgs[currentLang][type]||'Yardım istiyorum.';
     }
     
-    document.getElementById('textInput').value=msg;
-    sendMessage();
+    if(type==='sinema'||type==='tiyatro'||type==='konser') {
+      // Önce AI'dan bilgi al, sonra sabit linkleri ekle
+      document.getElementById('textInput').value=msg;
+      sendMessageWithCallback(type);
+    } else {
+      document.getElementById('textInput').value=msg;
+      sendMessage();
+    }
+  }
+
+  async function sendMessageWithCallback(type) {
+    await sendMessage();
+    // Cevap geldikten sonra sabit linkleri ekle
+    setTimeout(()=>{
+      const chatArea=document.getElementById('chatArea');
+      const lastAI=chatArea.querySelector('.message.ai:last-child');
+      if(lastAI && !lastAI.dataset.linksAdded) {
+        lastAI.innerHTML += getTicketSitesHtml();
+        lastAI.dataset.linksAdded='true';
+      }
+    }, 500);
   }
 
   function addMessage(role,content) {
