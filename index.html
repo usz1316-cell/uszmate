@@ -61,21 +61,20 @@
     .lang-btn.active { background:var(--yellow-glow); border-color:var(--yellow); color:var(--yellow); }
 
     /* LOCATION */
-    .location-bar { background:rgba(245,200,0,0.08); border-bottom:1px solid var(--border); padding:4px 14px; display:flex; align-items:center; gap:6px; flex-shrink:0; }
+    .location-bar { background:rgba(245,200,0,0.08); border-bottom:1px solid var(--border); padding:4px 14px; display:flex; align-items:center; gap:6px; flex-shrink:0; justify-content:space-between; }
     .location-bar .loc-text { font-size:11px; color:var(--yellow); }
+    .location-bar .datetime-text { font-size:10px; color:rgba(245,200,0,0.7); text-align:right; }
 
     /* INFO BANNER */
-    #infoBanner { background:var(--navy); padding:7px 12px 6px; flex-shrink:0; width:100%; }
-    .info-title { display:none; }
-    .info-text { font-size:13px; color:rgba(245,200,0,0.9); line-height:1.6; text-align:center; font-weight:500; }
-    .welcome-divider { height:3px; background:var(--yellow); flex-shrink:0; width:100%; }
+    #infoBanner { display:none; }
+    .welcome-divider { display:none; }
 
     /* MAIN BUTTONS */
     .main-buttons { display:grid; grid-template-columns:repeat(4,1fr); gap:4px; padding:6px 8px; background:rgba(10,22,40,0.95); flex-shrink:0; border-bottom:1px solid var(--border); }
-    .main-btn { background:var(--navy-mid); border:1px solid var(--border); border-radius:6px; padding:3px 6px; color:var(--yellow); font-size:8px; font-weight:600; cursor:pointer; text-align:left; transition:all 0.2s; display:flex; flex-direction:row; align-items:center; gap:4px; }
+    .main-btn { background:var(--navy-mid); border:1px solid var(--border); border-radius:8px; padding:5px 3px; color:var(--yellow); font-size:9px; font-weight:600; cursor:pointer; text-align:center; transition:all 0.2s; display:flex; flex-direction:column; align-items:center; gap:2px; }
     .main-btn:active { transform:scale(0.95); background:var(--yellow-glow); }
     .main-btn.active { background:var(--yellow-glow); border-color:var(--yellow); }
-    .main-btn-icon { font-size:12px; flex-shrink:0; }
+    .main-btn-icon { font-size:16px; }
 
     /* CHAT */
     #chatArea { flex:1; overflow-y:auto; padding:12px; display:flex; flex-direction:column; gap:10px; scroll-behavior:smooth; background:#e8e8e8; border-bottom:2px solid var(--yellow); }
@@ -146,8 +145,8 @@
   </header>
 
   <div class="location-bar">
-    <span>📍</span>
-    <span class="loc-text" id="locationText">Konum aliniyor...</span>
+    <div style="display:flex;align-items:center;gap:6px;"><span>📍</span><span class="loc-text" id="locationText">Konum aliniyor...</span></div>
+    <span class="datetime-text" id="datetimeText"></span>
   </div>
 
   <div id="infoBanner">
@@ -213,10 +212,10 @@
       infoText:"Eğer sıfır araç istiyorsan dilediğin markanın satış mağazasına ve web sitesine ulaşabilirsin. 2. el araç istiyorsan satış galerisine ve internet satış mağaza linkine ulaşabilirsin. Sıfır ev istiyorsan inşaat firmalarının listesine ve web sitelerine ulaşabilirsin. 2. el ev ve kiralık ev arıyorsan internet satış ve kiralık ev internet linkine ulaşabilirsin. Bulunduğun şehirde aradığın banka, hastane, eczane, otel, restoran, kafe, mağazaların isimlerine ve internet linklerine ulaşabilirsin. Uçak bilet fiyatlarını görebilir ve alım linkine ulaşabilirsin. Bulunduğun lokasyondaki sinema, konser, tiyatro gibi etkinlikleri görebilir bilet alım linkine ulaşabilirsin. Bulunduğun lokasyonun para biriminin diğer para birimleri ile olan kurunu görebilirsin. Dilediğin her türlü ürünün fiyatlarına ve alım linkine ulaşabilirsin. Her dilden her dile çeviri yapabilirsin. Dilediğin yemeği satan kafe ve restoranın internet linkine ulaşabilir ve sipariş verebilirsin. Fotoğraf butonu ile dilediğin şeyin resmini çekip hakkında ayrıntılı bilgi edinebilirsin. Dilersen yazı ile dilersen mikrofon tuşu ile sesli komut verebilirsin.",
       btns:["Araç","Ev","Nerede","Uçuş","Sinema","Tiyatro","Konser","Döviz","Ürün","Çeviri","Yemek","Kamera"],
       btnMsgs:{
-        sinema:"Bulunduğum lokasyondaki sinemaların isimlerini, adreslerini, telefonlarını ve internet linklerini listele. Her sinema için: İsim, Adres, Telefon, Web linki formatında ver.",
-        tiyatro:"Bulunduğum lokasyondaki tiyatroların isimlerini, adreslerini, telefonlarını ve internet linklerini listele.",
-        konser:"Bulunduğum lokasyondaki önümüzdeki 6 ay içindeki konserleri listele. Her konser için: Sanatçı, Mekan, Tarih, Bilet linki ver.",
-        doviz:"Bulunduğum lokasyonun para biriminin 1 dolar karşılığını göster. Sonra dolar, euro, sterlin, TL, tenge, dirhem kurlarını listele."
+        sinema:"Bulunduğum lokasyonda şu an gösterimde olan en yüksek reytingli 5 filmi listele. Sadece: Film adı, başrol oyuncusu ve direkt bilet alım linki. Başka bilgi ekleme. Geçmiş tarihli film gösterme.",
+        tiyatro:"Bulunduğum lokasyonda şu an sahnede olan en iyi 5 tiyatro oyununu listele. Sadece: Oyun adı, başrol oyuncusu ve direkt bilet alım linki. Başka bilgi ekleme.",
+        konser:"Bulunduğum lokasyondaki önümüzdeki 3 ay içindeki konserleri listele. Sadece: Sanatçı adı, tarih ve direkt bilet alım linki. Geçmiş tarihli konser gösterme. Başka bilgi ekleme.",
+        doviz:"Bulunduğum lokasyonun para biriminin 1 dolar karşılığını göster. Sadece bu bilgiyi ver, başka açıklama ekleme."
       }
     },
     en: {
@@ -235,10 +234,10 @@
       infoText:"You can ask me anything and access purchase links for anything you want here.",
       btns:["Vehicle","Home","Nearby","Flight","Cinema","Theater","Concert","Currency","Product","Translate","Food","Camera"],
       btnMsgs:{
-        sinema:"List cinemas in my location with name, address, phone and website link.",
-        tiyatro:"List theaters in my location with name, address, phone and website link.",
-        konser:"List concerts in my location for the next 6 months. For each: Artist, Venue, Date, Ticket link.",
-        doviz:"Show the local currency exchange rate for 1 USD. Then list rates for dollar, euro, sterling, TL, tenge, dirham."
+        sinema:"List the top 5 highest-rated movies currently showing in my location. Only: Movie name, lead actor and direct ticket purchase link. No other info. No past dates.",
+        tiyatro:"List the top 5 theater plays currently on stage in my location. Only: Play name, lead actor and direct ticket purchase link. No other info.",
+        konser:"List concerts in my location for the next 3 months. Only: Artist name, date and direct ticket purchase link. No past dates. No other info.",
+        doviz:"Show the local currency exchange rate for 1 USD only. No other explanation."
       }
     },
     ru: {
@@ -257,10 +256,10 @@
       infoText:"Вы можете спросить меня о чём угодно и получить ссылки для покупки здесь.",
       btns:["Авто","Жильё","Где","Рейс","Кино","Театр","Концерт","Валюта","Товар","Перевод","Еда","Камера"],
       btnMsgs:{
-        sinema:"Список кинотеатров в моём городе с названием, адресом, телефоном и ссылкой на сайт.",
-        tiyatro:"Список театров в моём городе с названием, адресом, телефоном и ссылкой.",
-        konser:"Список концертов в моём городе на следующие 6 месяцев. Для каждого: Артист, Место, Дата, Ссылка на билеты.",
-        doviz:"Покажи курс местной валюты к 1 доллару. Затем список курсов: доллар, евро, фунт, лира, тенге, дирхам."
+        sinema:"Список 5 лучших фильмов в прокате в моём городе. Только: название фильма, главный актёр и прямая ссылка на покупку билета. Без прошедших дат.",
+        tiyatro:"Список 5 лучших спектаклей в моём городе. Только: название, главный актёр и прямая ссылка на билет.",
+        konser:"Концерты в моём городе на следующие 3 месяца. Только: артист, дата и прямая ссылка на билет. Без прошедших дат.",
+        doviz:"Покажи только курс местной валюты к 1 доллару. Без других объяснений."
       }
     }
   };
@@ -274,12 +273,25 @@
       document.getElementById('loginScreen').style.display='none';
       document.getElementById('app').classList.add('visible');
       getLocation();
+      updateDateTime();
     } else {
       document.getElementById('loginError').textContent=T[currentLang].wrongPass;
       document.getElementById('passwordInput').value='';
     }
   }
   document.getElementById('passwordInput').addEventListener('keydown',e=>{if(e.key==='Enter')checkPassword();});
+
+  function updateDateTime() {
+    const now = new Date();
+    const dateStr = now.toLocaleDateString(currentLang==='tr'?'tr-TR':currentLang==='en'?'en-US':'ru-RU', {day:'numeric', month:'short', year:'numeric'});
+    const timeStr = now.toLocaleTimeString(currentLang==='tr'?'tr-TR':currentLang==='en'?'en-US':'ru-RU', {hour:'2-digit', minute:'2-digit'});
+    const el = document.getElementById('datetimeText');
+    if(el) el.textContent = dateStr + ' ' + timeStr;
+  }
+  
+  // Her dakika güncelle
+  setInterval(updateDateTime, 60000);
+  updateDateTime();
 
   function getLocation() {
     if(!navigator.geolocation){document.getElementById('locationText').textContent='Konum desteklenmiyor';return;}
@@ -417,7 +429,7 @@ Ucus fiyatlarini DOLAR $ olarak goster.
 Arac sorgusunda: yetkili satis magazalari + web linki.
 2. el arac: internet satis siteleri + link.
 Ev sorgusunda: insaat firmalari veya emlak siteleri + link.
-Sinema/tiyatro/konser: mekan adi + adres + bilet linki.
+Sinema/tiyatro/konser: sadece guncel ve gelecekteki gosterimler, gecmis tarihli gosterme. Film/oyun adi + baslol oyuncusu + direkt bilet linki.
 Doviz: anlık kur bilgisi.
 Film isimlerini ${L.systemLang} diline cevir.`;
 
