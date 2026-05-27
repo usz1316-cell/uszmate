@@ -318,22 +318,16 @@ function setLang(lang, btn) {
       }).catch(()=>{});
   }
 }
-function showCurrencyCalculator() {
-  const existing = document.getElementById('currencyModal');
-  if(existing) existing.remove();
-  
-  const modal = document.createElement('div');
-  modal.id = 'currencyModal';
-  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;';
-  modal.innerHTML = `
-    <div style="background:#0a1628;border:1px solid rgba(245,200,0,0.3);border-radius:16px;padding:20px;width:100%;max-width:340px;">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-        <span style="color:#f5c800;font-size:16px;font-weight:700;">💱 Döviz Hesaplama</span>
-        <button onclick="document.getElementById('currencyModal').remove()" style="background:transparent;border:none;color:#f5c800;font-size:20px;cursor:pointer;">✕</button>
-      </div>
-      <div style="display:flex;gap:8px;margin-bottom:12px;">
-        <input type="number" id="calcAmount" placeholder="Miktar" style="flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(245,200,0,0.2);border-radius:8px;padding:10px;color:white;font-size:15px;outline:none;">
-        <select id="calcFrom" style="background:#0f2040;border:1px solid rgba(245,200,0,0.2);border-radius:8px;padding:10px;color:#f5c800;font-size:14px;outline:none;">
+function addCurrencyCalculator() {
+  const chatArea = document.getElementById('chatArea');
+  const div = document.createElement('div');
+  div.className = 'message ai';
+  div.innerHTML = `
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="font-weight:700;color:#0a1628;margin-bottom:4px;">💱 Döviz Hesaplama</div>
+      <div style="display:flex;gap:6px;">
+        <input type="number" id="calcAmount" placeholder="Miktar" style="flex:1;border:1px solid #ccc;border-radius:8px;padding:8px;font-size:14px;outline:none;">
+        <select id="calcFrom" style="background:white;border:1px solid #ccc;border-radius:8px;padding:8px;font-size:13px;outline:none;">
           <option value="USD">USD $</option>
           <option value="EUR">EUR €</option>
           <option value="GBP">GBP £</option>
@@ -342,22 +336,20 @@ function showCurrencyCalculator() {
           <option value="AED">AED د.إ</option>
         </select>
       </div>
-      <div style="text-align:center;color:rgba(245,200,0,0.6);margin-bottom:12px;">▼</div>
-      <div style="margin-bottom:16px;">
-        <select id="calcTo" style="width:100%;background:#0f2040;border:1px solid rgba(245,200,0,0.2);border-radius:8px;padding:10px;color:#f5c800;font-size:14px;outline:none;">
-          <option value="KZT">KZT ₸</option>
-          <option value="USD">USD $</option>
-          <option value="EUR">EUR €</option>
-          <option value="GBP">GBP £</option>
-          <option value="TRY">TRY ₺</option>
-          <option value="AED">AED د.إ</option>
-        </select>
-      </div>
-      <button onclick="calcCurrency()" style="width:100%;background:#f5c800;color:#0a1628;border:none;border-radius:8px;padding:12px;font-size:15px;font-weight:700;cursor:pointer;">HESAPLA</button>
-      <div id="calcResult" style="margin-top:12px;text-align:center;color:#f5c800;font-size:18px;font-weight:700;min-height:28px;"></div>
+      <select id="calcTo" style="background:white;border:1px solid #ccc;border-radius:8px;padding:8px;font-size:13px;outline:none;">
+        <option value="KZT">KZT ₸</option>
+        <option value="USD">USD $</option>
+        <option value="EUR">EUR €</option>
+        <option value="GBP">GBP £</option>
+        <option value="TRY">TRY ₺</option>
+        <option value="AED">AED د.إ</option>
+      </select>
+      <button onclick="calcCurrency()" style="background:#0a1628;color:#f5c800;border:none;border-radius:8px;padding:10px;font-weight:700;cursor:pointer;font-size:14px;">HESAPLA</button>
+      <div id="calcResult" style="text-align:center;font-weight:700;color:#0a1628;font-size:16px;min-height:24px;"></div>
     </div>
   `;
-  document.body.appendChild(modal);
+  chatArea.appendChild(div);
+  chatArea.scrollTop = chatArea.scrollHeight;
 }
 
 async function calcCurrency() {
