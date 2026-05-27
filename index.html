@@ -364,12 +364,16 @@ async function calcCurrency() {
   result.textContent = '...';
   
   try {
-    const r = await fetch(`https://api.frankfurter.app/latest?amount=${amount}&from=${from}&to=${to}`);
+    const r = await fetch(`https://open.er-api.com/v6/latest/${from}`);
     const d = await r.json();
-    const converted = d.rates[to];
-    result.textContent = `${amount} ${from} = ${converted.toFixed(2)} ${to}`;
+    if(d.rates && d.rates[to]) {
+      const converted = (amount * d.rates[to]).toFixed(2);
+      result.textContent = `${amount} ${from} = ${converted} ${to}`;
+    } else {
+      result.textContent = 'Kur bilgisi alinamadi';
+    }
   } catch {
-    result.textContent = 'Kur bilgisi alinamadi';
+    result.textContent = 'Baglanti hatasi';
   }
 }
 function getTicketSitesHtml() {
