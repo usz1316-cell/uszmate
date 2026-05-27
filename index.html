@@ -335,7 +335,7 @@ function handleBtn(type) {
   if(type==='sinema') msg = L.sinemaMsg;
   else if(type==='tiyatro') msg = L.tiyatroMsg;
   else if(type==='konser') msg = L.konserMsg;
-  else if(type==='doviz') msg = L.dovizMsg;
+  else if(type==='doviz') msg = `${userLocation?.name||'bulundugum yer'} lokasyonunun resmi para biriminin 1 dolar karsiligi nedir? Sadece bu bilgiyi ver.`;
   else {
     const msgs = {
       tr:{arac:"Arac hakkinda yardim istiyorum.",ev:"Ev hakkinda yardim istiyorum.",nerede:"Bulundugum yerde populer yerler.",ucus:"Ucus aramak istiyorum.",urun:"Urun aramak istiyorum.",ceviri:"Ceviri yapmak istiyorum.",yemek:"Yemek siparisi vermek istiyorum."},
