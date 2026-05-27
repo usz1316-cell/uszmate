@@ -396,7 +396,13 @@ function handleBtn(type) {
   if(type==='sinema') msg = L.sinemaMsg;
   else if(type==='tiyatro') msg = L.tiyatroMsg;
   else if(type==='konser') msg = L.konserMsg;
-  else if(type==='doviz') { 
+  else if(type==='doviz') {
+    const locName = userLocation?.name||'bulundugum yer';
+    document.getElementById('textInput').value = `${locName} lokasyonunun resmi para biriminin 1 dolar karsiligi nedir? Sadece bu bilgiyi ver.`;
+    sendMessage();
+    setTimeout(addCurrencyCalculator, 3000);
+    return;
+  } 
     document.getElementById('textInput').value = `${userLocation?.name||'bulundugum yer'} lokasyonunun resmi para biriminin 1 dolar karsiligi nedir? Sadece bu bilgiyi ver.`;
     sendMessage();
     setTimeout(showCurrencyCalculator, 2000);
