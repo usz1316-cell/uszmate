@@ -33,14 +33,12 @@
     .login-logo { font-family:'Bebas Neue',sans-serif; font-size:72px; color:var(--yellow); letter-spacing:8px; text-shadow:0 0 40px rgba(245,200,0,0.4); animation:pulse-glow 3s ease-in-out infinite; }
     @keyframes pulse-glow { 0%,100%{text-shadow:0 0 40px rgba(245,200,0,0.4);}50%{text-shadow:0 0 60px rgba(245,200,0,0.7);} }
     .login-subtitle { font-size:12px; color:var(--text-muted); letter-spacing:3px; text-transform:uppercase; margin-top:-16px; }
-    .login-ai-notice { font-size:10px; color:rgba(245,200,0,0.4); text-align:center; margin-top:-8px; }
+    .login-ai-notice { font-size:10px; color:rgba(245,200,0,0.4); text-align:center; }
     .login-form { display:flex; flex-direction:column; gap:14px; width:100%; max-width:320px; position:relative; z-index:1; }
-    .login-input { background:var(--input-bg); border:1px solid var(--border); border-radius:12px; padding:14px 20px; color:var(--text); font-family:'Outfit',sans-serif; font-size:16px; outline:none; text-align:center; letter-spacing:4px; transition:border-color 0.2s,box-shadow 0.2s; }
+    .login-input { background:var(--input-bg); border:1px solid var(--border); border-radius:12px; padding:14px 20px; color:var(--text); font-family:'Outfit',sans-serif; font-size:16px; outline:none; text-align:center; letter-spacing:4px; transition:border-color 0.2s; }
     .login-input:focus { border-color:var(--yellow); box-shadow:0 0 20px rgba(245,200,0,0.15); }
     .login-input::placeholder { letter-spacing:1px; color:var(--text-muted); }
-    .login-btn { background:var(--yellow); color:var(--navy); border:none; border-radius:12px; padding:14px; font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:2px; cursor:pointer; transition:transform 0.15s,box-shadow 0.15s; }
-    .login-btn:active{transform:scale(0.97);}
-    .login-btn:hover{box-shadow:0 4px 20px rgba(245,200,0,0.4);}
+    .login-btn { background:var(--yellow); color:var(--navy); border:none; border-radius:12px; padding:14px; font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:2px; cursor:pointer; }
     .login-error { color:#ff4d4d; font-size:13px; text-align:center; min-height:18px; }
 
     /* APP */
@@ -52,41 +50,35 @@
     .header-left { display:flex; flex-direction:column; gap:1px; }
     .header-brand { font-size:9px; color:var(--text-muted); letter-spacing:1.5px; text-transform:uppercase; line-height:1.6; }
     .header-brand span { display:block; }
-    .header-ai-notice { font-size:8px; color:rgba(245,200,0,0.4); letter-spacing:0.5px; }
+    .header-ai-notice { font-size:8px; color:rgba(245,200,0,0.4); }
     .header-center { position:absolute; left:50%; transform:translateX(-50%); top:6px; text-align:center; }
     .header-title { font-family:'Bebas Neue',sans-serif; font-size:38px; color:var(--yellow); letter-spacing:8px; line-height:1; text-shadow:0 0 20px rgba(245,200,0,0.3); }
-    .header-right { display:flex; flex-direction:column; align-items:flex-end; gap:4px; }
     .lang-selector { display:flex; gap:3px; }
-    .lang-btn { background:transparent; border:1px solid transparent; border-radius:6px; padding:3px 7px; color:var(--text-muted); font-family:'Outfit',sans-serif; font-size:10px; font-weight:600; cursor:pointer; transition:all 0.2s; }
+    .lang-btn { background:transparent; border:1px solid transparent; border-radius:6px; padding:3px 7px; color:var(--text-muted); font-size:10px; font-weight:600; cursor:pointer; transition:all 0.2s; }
     .lang-btn.active { background:var(--yellow-glow); border-color:var(--yellow); color:var(--yellow); }
 
-    /* LOCATION */
-    .location-bar { background:rgba(245,200,0,0.08); border-bottom:1px solid var(--border); padding:4px 14px; display:flex; align-items:center; gap:6px; flex-shrink:0; justify-content:space-between; }
-    .location-bar .loc-text { font-size:11px; color:var(--yellow); }
-    .location-bar .datetime-text { font-size:10px; color:rgba(245,200,0,0.7); text-align:right; }
-
-    /* INFO BANNER */
-    #infoBanner { display:none; }
-    .welcome-divider { display:none; }
+    /* LOCATION + DATETIME */
+    .location-bar { background:rgba(245,200,0,0.08); border-bottom:1px solid var(--border); padding:4px 14px; display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
+    .loc-text { font-size:11px; color:var(--yellow); }
+    .datetime-text { font-size:10px; color:rgba(245,200,0,0.7); }
 
     /* MAIN BUTTONS */
     .main-buttons { display:grid; grid-template-columns:repeat(4,1fr); gap:4px; padding:6px 8px; background:rgba(10,22,40,0.95); flex-shrink:0; border-bottom:1px solid var(--border); }
-    .main-btn { background:var(--navy-mid); border:1px solid var(--border); border-radius:8px; padding:5px 3px; color:var(--yellow); font-size:9px; font-weight:600; cursor:pointer; text-align:center; transition:all 0.2s; display:flex; flex-direction:column; align-items:center; gap:2px; }
+    .main-btn { background:var(--navy-mid); border:1px solid var(--border); border-radius:6px; padding:4px 6px; color:var(--yellow); font-size:10px; font-weight:600; cursor:pointer; display:flex; flex-direction:row; align-items:center; gap:4px; transition:all 0.2s; }
     .main-btn:active { transform:scale(0.95); background:var(--yellow-glow); }
-    .main-btn.active { background:var(--yellow-glow); border-color:var(--yellow); }
-    .main-btn-icon { font-size:16px; }
+    .main-btn-icon { font-size:14px; flex-shrink:0; }
 
     /* CHAT */
     #chatArea { flex:1; overflow-y:auto; padding:12px; display:flex; flex-direction:column; gap:10px; scroll-behavior:smooth; background:#e8e8e8; border-bottom:2px solid var(--yellow); }
     #chatArea::-webkit-scrollbar{width:4px;}
     #chatArea::-webkit-scrollbar-thumb{background:#aaa;border-radius:2px;}
-    .message { max-width:88%; padding:10px 13px; border-radius:var(--radius); font-size:13px; line-height:1.6; animation:fadeUp 0.3s ease; color:#111; }
+    .message { max-width:90%; padding:10px 13px; border-radius:var(--radius); font-size:13px; line-height:1.6; animation:fadeUp 0.3s ease; }
     @keyframes fadeUp { from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);} }
-    .message.ai { background:#ffffff; border:1px solid #ccc; align-self:flex-start; border-bottom-left-radius:4px; }
+    .message.ai { background:#fff; border:1px solid #ccc; align-self:flex-start; border-bottom-left-radius:4px; color:#111; }
     .message.user { background:var(--navy); border:1px solid var(--navy-light); align-self:flex-end; border-bottom-right-radius:4px; color:var(--yellow); }
-    .message a { color:#1a56db; text-decoration:underline; text-underline-offset:3px; }
+    .message a { color:#1a56db; text-decoration:underline; }
     .message.user a { color:var(--yellow); }
-    .typing-indicator { display:flex; gap:5px; padding:12px 14px; background:#ffffff; border:1px solid #ccc; border-radius:var(--radius); border-bottom-left-radius:4px; align-self:flex-start; }
+    .typing-indicator { display:flex; gap:5px; padding:12px 14px; background:#fff; border:1px solid #ccc; border-radius:var(--radius); border-bottom-left-radius:4px; align-self:flex-start; }
     .typing-dot { width:7px; height:7px; background:var(--navy); border-radius:50%; animation:typing 1.2s infinite; opacity:0.4; }
     .typing-dot:nth-child(2){animation-delay:0.2s;}
     .typing-dot:nth-child(3){animation-delay:0.4s;}
@@ -94,22 +86,20 @@
 
     /* IMAGE PREVIEW */
     .image-preview-wrap { padding:6px 14px 0; flex-shrink:0; background:rgba(10,22,40,0.95); }
-    .image-preview{position:relative;display:inline-block;}
+    .image-preview { position:relative; display:inline-block; }
     .image-preview img { height:56px; width:56px; object-fit:cover; border-radius:8px; border:1px solid var(--border); }
     .image-preview-remove { position:absolute; top:-6px; right:-6px; background:#ff4d4d; border:none; border-radius:50%; width:18px; height:18px; color:white; font-size:11px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
 
     /* INPUT */
-    .input-area { padding:8px 12px; padding-bottom:max(8px,env(safe-area-inset-bottom)); background:rgba(10,22,40,0.95); backdrop-filter:blur(10px); flex-shrink:0; }
+    .input-area { padding:8px 12px; padding-bottom:max(8px,env(safe-area-inset-bottom)); background:rgba(10,22,40,0.95); flex-shrink:0; }
     .input-row { display:flex; gap:6px; align-items:flex-end; }
-    #textInput { flex:1; background:var(--input-bg); border:1px solid var(--border); border-radius:12px; padding:10px 13px; color:var(--text); font-family:'Outfit',sans-serif; font-size:14px; outline:none; resize:none; max-height:120px; min-height:42px; transition:border-color 0.2s; line-height:1.5; }
+    #textInput { flex:1; background:var(--input-bg); border:1px solid var(--border); border-radius:12px; padding:10px 13px; color:var(--text); font-family:'Outfit',sans-serif; font-size:14px; outline:none; resize:none; max-height:120px; min-height:42px; line-height:1.5; }
     #textInput:focus{border-color:rgba(245,200,0,0.5);}
     #textInput::placeholder{color:var(--text-muted);}
-    .icon-btn { width:42px; height:42px; border-radius:10px; border:1px solid var(--border); background:var(--input-bg); color:var(--yellow); cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all 0.2s; font-size:16px; }
-    .icon-btn:active{transform:scale(0.92);}
+    .icon-btn { width:42px; height:42px; border-radius:10px; border:1px solid var(--border); background:var(--input-bg); color:var(--yellow); cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:16px; }
     .icon-btn.recording { background:rgba(255,50,50,0.15); border-color:#ff4d4d; color:#ff4d4d; animation:rec-pulse 1s ease-in-out infinite; }
     @keyframes rec-pulse { 0%,100%{box-shadow:0 0 0 0 rgba(255,77,77,0.4);}50%{box-shadow:0 0 0 8px rgba(255,77,77,0);} }
-    .send-btn { width:42px; height:42px; border-radius:10px; border:none; background:var(--yellow); color:var(--navy); cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all 0.2s; font-size:16px; }
-    .send-btn:active{transform:scale(0.92);}
+    .send-btn { width:42px; height:42px; border-radius:10px; border:none; background:var(--yellow); color:var(--navy); cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:16px; }
     #fileInput{display:none;}
   </style>
 </head>
@@ -118,7 +108,7 @@
 <!-- LOGIN -->
 <div id="loginScreen">
   <div class="login-logo">USZ&nbsp;MATE</div>
-  <div class="login-subtitle">USZ Digital — Kisisel Asistan</div>
+  <div class="login-subtitle">USZ Digital</div>
   <div class="login-ai-notice" id="loginAiNotice">Bu uygulama yapay zeka teknolojisi ile calismaktadir.</div>
   <div class="login-form">
     <input type="password" class="login-input" id="passwordInput" placeholder="Sifrenizi girin" />
@@ -135,12 +125,10 @@
       <div class="header-ai-notice" id="headerAiNotice">Yapay zeka ile calisir</div>
     </div>
     <div class="header-center"><div class="header-title">USZ&nbsp;MATE</div></div>
-    <div class="header-right">
-      <div class="lang-selector">
-        <button class="lang-btn active" onclick="setLang('tr',this)">TR</button>
-        <button class="lang-btn" onclick="setLang('en',this)">EN</button>
-        <button class="lang-btn" onclick="setLang('ru',this)">RU</button>
-      </div>
+    <div class="lang-selector">
+      <button class="lang-btn active" onclick="setLang('tr',this)">TR</button>
+      <button class="lang-btn" onclick="setLang('en',this)">EN</button>
+      <button class="lang-btn" onclick="setLang('ru',this)">RU</button>
     </div>
   </header>
 
@@ -149,25 +137,18 @@
     <span class="datetime-text" id="datetimeText"></span>
   </div>
 
-  <div id="infoBanner">
-    <div class="info-title" id="infoTitle">🤖 BENİMLE YAPABİLECEKLERİN</div>
-    <div class="info-text" id="infoText">Bana istediğin her şeyi sorabilirsin ve burada istediğin her şeyin satın alma linkine ulaşabilirsin.</div>
-  </div>
-  <div class="welcome-divider"></div>
-
-  <!-- MAIN BUTTONS -->
   <div class="main-buttons">
-    <button class="main-btn" onclick="handleMainBtn('arac')"><span class="main-btn-icon">🚗</span><span id="btn1">Araç</span></button>
-    <button class="main-btn" onclick="handleMainBtn('ev')"><span class="main-btn-icon">🏠</span><span id="btn2">Ev</span></button>
-    <button class="main-btn" onclick="handleMainBtn('nerede')"><span class="main-btn-icon">📍</span><span id="btn3">Nerede</span></button>
-    <button class="main-btn" onclick="handleMainBtn('ucus')"><span class="main-btn-icon">✈️</span><span id="btn4">Uçuş</span></button>
-    <button class="main-btn" onclick="handleMainBtn('sinema')"><span class="main-btn-icon">🎬</span><span id="btn5">Sinema</span></button>
-    <button class="main-btn" onclick="handleMainBtn('tiyatro')"><span class="main-btn-icon">🎭</span><span id="btn6">Tiyatro</span></button>
-    <button class="main-btn" onclick="handleMainBtn('konser')"><span class="main-btn-icon">🎵</span><span id="btn7">Konser</span></button>
-    <button class="main-btn" onclick="handleMainBtn('doviz')"><span class="main-btn-icon">💱</span><span id="btn8">Döviz</span></button>
-    <button class="main-btn" onclick="handleMainBtn('urun')"><span class="main-btn-icon">🛒</span><span id="btn9">Ürün</span></button>
-    <button class="main-btn" onclick="handleMainBtn('ceviri')"><span class="main-btn-icon">🌍</span><span id="btn10">Çeviri</span></button>
-    <button class="main-btn" onclick="handleMainBtn('yemek')"><span class="main-btn-icon">🍽️</span><span id="btn11">Yemek</span></button>
+    <button class="main-btn" onclick="handleBtn('arac')"><span class="main-btn-icon">🚗</span><span id="btn1">Araç</span></button>
+    <button class="main-btn" onclick="handleBtn('ev')"><span class="main-btn-icon">🏠</span><span id="btn2">Ev</span></button>
+    <button class="main-btn" onclick="handleBtn('nerede')"><span class="main-btn-icon">📍</span><span id="btn3">Nerede</span></button>
+    <button class="main-btn" onclick="handleBtn('ucus')"><span class="main-btn-icon">✈️</span><span id="btn4">Uçuş</span></button>
+    <button class="main-btn" onclick="handleBtn('sinema')"><span class="main-btn-icon">🎬</span><span id="btn5">Sinema</span></button>
+    <button class="main-btn" onclick="handleBtn('tiyatro')"><span class="main-btn-icon">🎭</span><span id="btn6">Tiyatro</span></button>
+    <button class="main-btn" onclick="handleBtn('konser')"><span class="main-btn-icon">🎵</span><span id="btn7">Konser</span></button>
+    <button class="main-btn" onclick="handleBtn('doviz')"><span class="main-btn-icon">💱</span><span id="btn8">Döviz</span></button>
+    <button class="main-btn" onclick="handleBtn('urun')"><span class="main-btn-icon">🛒</span><span id="btn9">Ürün</span></button>
+    <button class="main-btn" onclick="handleBtn('ceviri')"><span class="main-btn-icon">🌍</span><span id="btn10">Çeviri</span></button>
+    <button class="main-btn" onclick="handleBtn('yemek')"><span class="main-btn-icon">🍽️</span><span id="btn11">Yemek</span></button>
     <button class="main-btn" onclick="document.getElementById('fileInput').click()"><span class="main-btn-icon">📷</span><span id="btn12">Kamera</span></button>
   </div>
 
@@ -175,7 +156,7 @@
 
   <div class="image-preview-wrap" id="imagePreviewWrap" style="display:none;">
     <div class="image-preview">
-      <img id="imagePreview" src="" alt="preview" />
+      <img id="imagePreview" src="" alt="" />
       <button class="image-preview-remove" onclick="removeImage()">x</button>
     </div>
   </div>
@@ -191,331 +172,321 @@
 </div>
 
 <script>
-  const PASSWORD = "uszmate2026";
+const PASSWORD = "uszmate2026";
 
-  const T = {
-    tr: {
-      placeholder:"Mesajinizi yazin...",
-      wrongPass:"Hatali sifre. Tekrar deneyin.",
-      infoTitle:"🤖 BENİMLE YAPABİLECEKLERİN",
-      infoText:"Bana istediğin her şeyi sorabilirsin ve burada istediğin her şeyin satın alma linkine ulaşabilirsin.",
-      locating:"Konum aliniyor...",
-      connErr:"Baglanti hatasi. Lutfen tekrar deneyin.",
-      noMic:"Tarayiciniz sesli komut desteklemiyor.",
-      photoAdded:"[Fotograf eklendi]",
-      photoAnalyze:"Bu fotografi analiz et ve acikla.",
-      systemLang:"Turkce",
-      aiNotice:"Yapay zeka ile calisir",
-      loginAiNotice:"Bu uygulama yapay zeka teknolojisi ile calismaktadir.",
-      loginBtn:"GIRIS YAP",
-      infoTitle:"BENİMLE YAPABİLECEKLERİN",
-      infoText:"Eğer sıfır araç istiyorsan dilediğin markanın satış mağazasına ve web sitesine ulaşabilirsin. 2. el araç istiyorsan satış galerisine ve internet satış mağaza linkine ulaşabilirsin. Sıfır ev istiyorsan inşaat firmalarının listesine ve web sitelerine ulaşabilirsin. 2. el ev ve kiralık ev arıyorsan internet satış ve kiralık ev internet linkine ulaşabilirsin. Bulunduğun şehirde aradığın banka, hastane, eczane, otel, restoran, kafe, mağazaların isimlerine ve internet linklerine ulaşabilirsin. Uçak bilet fiyatlarını görebilir ve alım linkine ulaşabilirsin. Bulunduğun lokasyondaki sinema, konser, tiyatro gibi etkinlikleri görebilir bilet alım linkine ulaşabilirsin. Bulunduğun lokasyonun para biriminin diğer para birimleri ile olan kurunu görebilirsin. Dilediğin her türlü ürünün fiyatlarına ve alım linkine ulaşabilirsin. Her dilden her dile çeviri yapabilirsin. Dilediğin yemeği satan kafe ve restoranın internet linkine ulaşabilir ve sipariş verebilirsin. Fotoğraf butonu ile dilediğin şeyin resmini çekip hakkında ayrıntılı bilgi edinebilirsin. Dilersen yazı ile dilersen mikrofon tuşu ile sesli komut verebilirsin.",
-      btns:["Araç","Ev","Nerede","Uçuş","Sinema","Tiyatro","Konser","Döviz","Ürün","Çeviri","Yemek","Kamera"],
-      btnMsgs:{
-        sinema:"Bulunduğum lokasyonda şu an gösterimde olan en yüksek reytingli 5 filmi listele. Her film icin: Film adi, basrol oyuncusu, IMDB puani ve 3 cumle konu ozeti. LINK YAZMA, HICBIR LINK EKLEME.",
-        tiyatro:"Bulunduğum lokasyonda şu an sahnede olan en iyi 5 tiyatro oyununu listele. Her oyun icin: Oyun adi, basrol oyuncusu ve 3 cumle konu ozeti. LINK YAZMA, HICBIR LINK EKLEME.",
-        konser:"Bulunduğum lokasyondaki önümüzdeki 3 ay icindeki konserleri listele. Her konser icin: Sanatci adi, tarih ve mekan. LINK YAZMA, HICBIR LINK EKLEME. Gecmis tarihli konser gosterme.",
-        doviz:"Bulunduğum lokasyonun para biriminin 1 dolar karşılığını göster. Sadece bu bilgiyi ver, başka açıklama ekleme."
-      }
-    },
-    en: {
-      placeholder:"Type your message...",
-      wrongPass:"Wrong password. Please try again.",
-      locating:"Getting location...",
-      connErr:"Connection error. Please try again.",
-      noMic:"Your browser does not support voice commands.",
-      photoAdded:"[Photo added]",
-      photoAnalyze:"Analyze and explain this photo.",
-      systemLang:"English",
-      aiNotice:"Powered by AI",
-      loginAiNotice:"This application is powered by artificial intelligence.",
-      loginBtn:"LOGIN",
-      infoTitle:"WHAT YOU CAN DO WITH ME",
-      infoText:"You can ask me anything and access purchase links for anything you want here.",
-      btns:["Vehicle","Home","Nearby","Flight","Cinema","Theater","Concert","Currency","Product","Translate","Food","Camera"],
-      btnMsgs:{
-        sinema:"List the top 5 highest-rated movies currently showing in my location. Only: Movie name, lead actor and direct ticket purchase link. No other info. No past dates.",
-        tiyatro:"List the top 5 theater plays currently on stage in my location. Only: Play name, lead actor and direct ticket purchase link. No other info.",
-        konser:"List concerts in my location for the next 3 months. Only: Artist name, date and direct ticket purchase link. No past dates. No other info.",
-        doviz:"Show the local currency exchange rate for 1 USD only. No other explanation."
-      }
-    },
-    ru: {
-      placeholder:"Введите сообщение...",
-      wrongPass:"Неверный пароль. Попробуйте снова.",
-      locating:"Определение местоположения...",
-      connErr:"Ошибка подключения. Попробуйте снова.",
-      noMic:"Ваш браузер не поддерживает голосовые команды.",
-      photoAdded:"[Фото добавлено]",
-      photoAnalyze:"Проанализируй и объясни это фото.",
-      systemLang:"Русском",
-      aiNotice:"Работает на ИИ",
-      loginAiNotice:"Это приложение работает на основе искусственного интеллекта.",
-      loginBtn:"ВОЙТИ",
-      infoTitle:"ЧТО ВЫ МОЖЕТЕ ДЕЛАТЬ СО МНОЙ",
-      infoText:"Вы можете спросить меня о чём угодно и получить ссылки для покупки здесь.",
-      btns:["Авто","Жильё","Где","Рейс","Кино","Театр","Концерт","Валюта","Товар","Перевод","Еда","Камера"],
-      btnMsgs:{
-        sinema:"Список 5 лучших фильмов в прокате в моём городе. Только: название фильма, главный актёр и прямая ссылка на покупку билета. Без прошедших дат.",
-        tiyatro:"Список 5 лучших спектаклей в моём городе. Только: название, главный актёр и прямая ссылка на билет.",
-        konser:"Концерты в моём городе на следующие 3 месяца. Только: артист, дата и прямая ссылка на билет. Без прошедших дат.",
-        doviz:"Покажи только курс местной валюты к 1 доллару. Без других объяснений."
-      }
-    }
-  };
+// Bilet siteleri - ulke koduna gore
+const TICKET_SITES = {
+  kz: [{n:'Ticketon',u:'https://ticketon.kz'},{n:'Kinopark',u:'https://kinopark.kz'},{n:'Topbilet',u:'https://topbilet.kz'}],
+  tr: [{n:'Biletix',u:'https://www.biletix.com'},{n:'Passo',u:'https://www.passo.com.tr'},{n:'Bubilet',u:'https://www.bubilet.com'}],
+  ae: [{n:'Platinumlist',u:'https://platinumlist.net'},{n:'Ticketmaster UAE',u:'https://www.ticketmaster.ae'},{n:'Live Nation ME',u:'https://livenation.me'}],
+  us: [{n:'Ticketmaster',u:'https://www.ticketmaster.com'},{n:'Songkick',u:'https://www.songkick.com'},{n:'StubHub',u:'https://www.stubhub.com'}],
+  gb: [{n:'Ticketmaster UK',u:'https://www.ticketmaster.co.uk'},{n:'See Tickets',u:'https://www.seetickets.com'},{n:'Songkick',u:'https://www.songkick.com'}],
+  de: [{n:'Eventim',u:'https://www.eventim.de'},{n:'Ticketmaster DE',u:'https://www.ticketmaster.de'},{n:'Reservix',u:'https://www.reservix.de'}],
+  ru: [{n:'Kassir',u:'https://www.kassir.ru'},{n:'Afisha',u:'https://www.afisha.ru'},{n:'Ticketland',u:'https://www.ticketland.ru'}],
+  fr: [{n:'Fnac Tickets',u:'https://www.fnacspectacles.com'},{n:'Ticketmaster FR',u:'https://www.ticketmaster.fr'},{n:'Digitick',u:'https://www.digitick.com'}],
+  jp: [{n:'Ticket Pia',u:'https://t.pia.jp'},{n:'Lawson Ticket',u:'https://l-tike.com'},{n:'e+',u:'https://eplus.jp'}],
+  au: [{n:'Ticketek',u:'https://www.ticketek.com.au'},{n:'Ticketmaster AU',u:'https://www.ticketmaster.com.au'},{n:'Moshtix',u:'https://www.moshtix.com.au'}],
+  default: [{n:'Ticketmaster',u:'https://www.ticketmaster.com'},{n:'Songkick',u:'https://www.songkick.com'},{n:'StubHub',u:'https://www.stubhub.com'}]
+};
 
-  let currentLang='tr', conversationHistory=[], selectedImageBase64=null;
-  let isRecording=false, recognition=null, isLoading=false, userLocation=null;
-
-  function checkPassword() {
-    const input=document.getElementById('passwordInput').value;
-    if(input===PASSWORD){
-      document.getElementById('loginScreen').style.display='none';
-      document.getElementById('app').classList.add('visible');
-      getLocation();
-      updateDateTime();
-    } else {
-      document.getElementById('loginError').textContent=T[currentLang].wrongPass;
-      document.getElementById('passwordInput').value='';
-    }
+const T = {
+  tr: {
+    placeholder:"Mesajinizi yazin...",
+    wrongPass:"Hatali sifre.",
+    locating:"Konum aliniyor...",
+    connErr:"Baglanti hatasi. Lutfen tekrar deneyin.",
+    noMic:"Sesli komut desteklenmiyor.",
+    photoAdded:"[Fotograf eklendi]",
+    photoAnalyze:"Bu fotografi analiz et.",
+    systemLang:"Turkce",
+    loginBtn:"GIRIS YAP",
+    loginAiNotice:"Bu uygulama yapay zeka ile calismaktadir.",
+    aiNotice:"Yapay zeka ile calisir",
+    btns:["Araç","Ev","Nerede","Uçuş","Sinema","Tiyatro","Konser","Döviz","Ürün","Çeviri","Yemek","Kamera"],
+    ticketLabel:"🎟️ Bilet Siteleri:",
+    sinemaMsg:"Bulundugum lokasyonda su an gosterimde olan en yuksek reytingli 5 filmi listele. Her film icin: Film adi ve Turkce cevirisi, basrol oyuncusu, IMDB puani, 3 cumle konu ozeti. Hicbir link yazma.",
+    tiyatroMsg:"Bulundugum lokasyonda su an sahnede olan en iyi 5 tiyatro oyununu listele. Her oyun icin: Oyun adi, basrol oyuncusu, 3 cumle konu ozeti. Hicbir link yazma.",
+    konserMsg:"Bulundugum lokasyondaki onumuzdeki 3 ay icindeki konserleri listele. Her konser icin: Sanatci adi, tarih, mekan. Gecmis tarihli konser gosterme. Hicbir link yazma.",
+    dovizMsg:"Bulundugum lokasyonun para biriminin 1 dolar karsiliginı goster. Sadece bu bilgiyi ver."
+  },
+  en: {
+    placeholder:"Type your message...",
+    wrongPass:"Wrong password.",
+    locating:"Getting location...",
+    connErr:"Connection error. Please try again.",
+    noMic:"Voice commands not supported.",
+    photoAdded:"[Photo added]",
+    photoAnalyze:"Analyze this photo.",
+    systemLang:"English",
+    loginBtn:"LOGIN",
+    loginAiNotice:"This app is powered by artificial intelligence.",
+    aiNotice:"Powered by AI",
+    btns:["Vehicle","Home","Nearby","Flight","Cinema","Theater","Concert","Currency","Product","Translate","Food","Camera"],
+    ticketLabel:"🎟️ Ticket Sites:",
+    sinemaMsg:"List the top 5 highest-rated movies currently showing in my location. For each: Movie name (with English title), lead actor, IMDB rating, 3-sentence plot summary. Do not include any links.",
+    tiyatroMsg:"List the top 5 theater plays currently on stage in my location. For each: Play name, lead actor, 3-sentence plot summary. Do not include any links.",
+    konserMsg:"List concerts in my location for the next 3 months. For each: Artist name, date, venue. No past dates. Do not include any links.",
+    dovizMsg:"Show the local currency exchange rate for 1 USD only."
+  },
+  ru: {
+    placeholder:"Введите сообщение...",
+    wrongPass:"Неверный пароль.",
+    locating:"Определение местоположения...",
+    connErr:"Ошибка подключения.",
+    noMic:"Голосовые команды не поддерживаются.",
+    photoAdded:"[Фото добавлено]",
+    photoAnalyze:"Проанализируй это фото.",
+    systemLang:"Русском",
+    loginBtn:"ВОЙТИ",
+    loginAiNotice:"Это приложение работает на основе ИИ.",
+    aiNotice:"Работает на ИИ",
+    btns:["Авто","Жильё","Где","Рейс","Кино","Театр","Концерт","Валюта","Товар","Перевод","Еда","Камера"],
+    ticketLabel:"🎟️ Сайты билетов:",
+    sinemaMsg:"Список 5 лучших фильмов в прокате в моём городе. Для каждого: название фильма, главный актёр, рейтинг IMDB, краткий сюжет в 3 предложениях. Никаких ссылок.",
+    tiyatroMsg:"Список 5 лучших спектаклей в моём городе. Для каждого: название, главный актёр, краткий сюжет. Никаких ссылок.",
+    konserMsg:"Концерты в моём городе на следующие 3 месяца. Для каждого: артист, дата, место. Без прошедших дат. Никаких ссылок.",
+    dovizMsg:"Покажи только курс местной валюты к 1 доллару."
   }
-  document.getElementById('passwordInput').addEventListener('keydown',e=>{if(e.key==='Enter')checkPassword();});
+};
 
-  function updateDateTime() {
-    const now = new Date();
-    const dateStr = now.toLocaleDateString(currentLang==='tr'?'tr-TR':currentLang==='en'?'en-US':'ru-RU', {day:'numeric', month:'short', year:'numeric'});
-    const timeStr = now.toLocaleTimeString(currentLang==='tr'?'tr-TR':currentLang==='en'?'en-US':'ru-RU', {hour:'2-digit', minute:'2-digit'});
-    const el = document.getElementById('datetimeText');
-    if(el) el.textContent = dateStr + ' ' + timeStr;
+let currentLang='tr', conversationHistory=[], selectedImageBase64=null;
+let isRecording=false, recognition=null, isLoading=false, userLocation=null;
+
+function checkPassword() {
+  const v = document.getElementById('passwordInput').value;
+  if(v === PASSWORD) {
+    document.getElementById('loginScreen').style.display='none';
+    document.getElementById('app').classList.add('visible');
+    getLocation();
+    updateDateTime();
+  } else {
+    document.getElementById('loginError').textContent = T[currentLang].wrongPass;
+    document.getElementById('passwordInput').value='';
+  }
+}
+document.getElementById('passwordInput').addEventListener('keydown', e=>{ if(e.key==='Enter') checkPassword(); });
+
+function updateDateTime() {
+  const now = new Date();
+  const d = now.toLocaleDateString(currentLang==='tr'?'tr-TR':currentLang==='en'?'en-US':'ru-RU', {day:'numeric',month:'short',year:'numeric'});
+  const t = now.toLocaleTimeString(currentLang==='tr'?'tr-TR':currentLang==='en'?'en-US':'ru-RU', {hour:'2-digit',minute:'2-digit'});
+  const el = document.getElementById('datetimeText');
+  if(el) el.textContent = d + ' ' + t;
+}
+setInterval(updateDateTime, 60000);
+
+function getLocation() {
+  if(!navigator.geolocation){ document.getElementById('locationText').textContent='Konum yok'; return; }
+  navigator.geolocation.getCurrentPosition(async pos => {
+    const lat=pos.coords.latitude, lon=pos.coords.longitude;
+    userLocation = {lat, lon, name:'', countryCode:''};
+    try {
+      const r = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&accept-language=${currentLang}`);
+      const d = await r.json();
+      const city = d.address.city||d.address.town||d.address.village||'';
+      const country = d.address.country||'';
+      const cc = d.address.country_code||'';
+      userLocation.name = `${city}, ${country}`;
+      userLocation.countryCode = cc;
+      document.getElementById('locationText').textContent = `${city}, ${country}`;
+    } catch {
+      userLocation.name = `${lat.toFixed(3)}, ${lon.toFixed(3)}`;
+      document.getElementById('locationText').textContent = userLocation.name;
+    }
+  }, ()=>{ document.getElementById('locationText').textContent = T[currentLang].locating; });
+}
+
+function setLang(lang, btn) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  const L = T[lang];
+  document.getElementById('textInput').placeholder = L.placeholder;
+  document.getElementById('headerAiNotice').textContent = L.aiNotice;
+  document.getElementById('loginAiNotice').textContent = L.loginAiNotice;
+  document.getElementById('loginBtn').textContent = L.loginBtn;
+  L.btns.forEach((text,i)=>{ const el=document.getElementById('btn'+(i+1)); if(el) el.textContent=text; });
+  updateDateTime();
+  // Lokasyonu yeni dilde guncelle
+  if(userLocation && userLocation.lat) {
+    fetch(`https://nominatim.openstreetmap.org/reverse?lat=${userLocation.lat}&lon=${userLocation.lon}&format=json&accept-language=${lang}`)
+      .then(r=>r.json()).then(d=>{
+        const city=d.address.city||d.address.town||d.address.village||'';
+        const country=d.address.country||'';
+        userLocation.name=`${city}, ${country}`;
+        document.getElementById('locationText').textContent=`${city}, ${country}`;
+      }).catch(()=>{});
+  }
+}
+
+function getTicketSitesHtml() {
+  const cc = (userLocation?.countryCode||'').toLowerCase();
+  const sites = TICKET_SITES[cc] || TICKET_SITES.default;
+  const label = T[currentLang].ticketLabel;
+  const links = sites.map(s=>`<a href="${s.u}" target="_blank" rel="noopener">${s.n}</a>`).join(' | ');
+  return `<br><br>${label} ${links}`;
+}
+
+function handleBtn(type) {
+  const L = T[currentLang];
+  const isEntertainment = ['sinema','tiyatro','konser'].includes(type);
+  
+  let msg = '';
+  if(type==='sinema') msg = L.sinemaMsg;
+  else if(type==='tiyatro') msg = L.tiyatroMsg;
+  else if(type==='konser') msg = L.konserMsg;
+  else if(type==='doviz') msg = L.dovizMsg;
+  else {
+    const msgs = {
+      tr:{arac:"Arac hakkinda yardim istiyorum.",ev:"Ev hakkinda yardim istiyorum.",nerede:"Bulundugum yerde populer yerler.",ucus:"Ucus aramak istiyorum.",urun:"Urun aramak istiyorum.",ceviri:"Ceviri yapmak istiyorum.",yemek:"Yemek siparisi vermek istiyorum."},
+      en:{arac:"I need help with vehicles.",ev:"I need help finding a home.",nerede:"Popular places near me.",ucus:"I want to search flights.",urun:"I want to search for a product.",ceviri:"I want to translate something.",yemek:"I want to order food."},
+      ru:{arac:"Мне нужна помощь с транспортом.",ev:"Мне нужна помощь с жильём.",nerede:"Популярные места рядом.",ucus:"Хочу найти рейс.",urun:"Хочу найти товар.",ceviri:"Хочу перевести текст.",yemek:"Хочу заказать еду."}
+    };
+    msg = msgs[currentLang][type] || '';
   }
   
-  // Her dakika güncelle
-  setInterval(updateDateTime, 60000);
-  updateDateTime();
-
-  function getLocation() {
-    if(!navigator.geolocation){document.getElementById('locationText').textContent='Konum desteklenmiyor';return;}
-    navigator.geolocation.getCurrentPosition(async pos=>{
-      const lat=pos.coords.latitude, lon=pos.coords.longitude;
-      userLocation={lat:lat,lon:lon,name:''};
-      try {
-        const res=await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&accept-language=${currentLang}`);
-        const data=await res.json();
-        const city=data.address.city||data.address.town||data.address.village||'';
-        const country=data.address.country||'';
-        const countryCode=data.address.country_code||'';
-        userLocation.name=`${city}, ${country}`;
-        userLocation.countryCode=countryCode;
-        userLocation.lat=lat; userLocation.lon=lon;
-        document.getElementById('locationText').textContent=`${city}, ${country}`;
-      } catch {
-        userLocation.name=`${lat.toFixed(4)}, ${lon.toFixed(4)}`;
-        userLocation.lat=lat; userLocation.lon=lon;
-        document.getElementById('locationText').textContent=userLocation.name;
-      }
-    },()=>{document.getElementById('locationText').textContent=T[currentLang].locating;});
+  document.getElementById('textInput').value = msg;
+  
+  if(isEntertainment) {
+    sendMessageThenAppendLinks();
+  } else {
+    sendMessage();
   }
+}
 
-  function setLang(lang,btn) {
-    currentLang=lang;
-    document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
-    if(btn) btn.classList.add('active');
-    const L=T[lang];
-    document.getElementById('textInput').placeholder=L.placeholder;
-    document.getElementById('infoTitle').textContent=L.infoTitle;
-    document.getElementById('infoText').textContent=L.infoText;
-    document.getElementById('headerAiNotice').textContent=L.aiNotice;
-    document.getElementById('loginAiNotice').textContent=L.loginAiNotice;
-    document.getElementById('loginBtn').textContent=L.loginBtn;
-    L.btns.forEach((text,i)=>{
-      const el=document.getElementById('btn'+(i+1));
-      if(el) el.textContent=text;
-    });
-    // Lokasyonu yeni dilde guncelle
-    if(userLocation&&userLocation.lat){
-      fetch(`https://nominatim.openstreetmap.org/reverse?lat=${userLocation.lat}&lon=${userLocation.lon}&format=json&accept-language=${lang}`)
-        .then(r=>r.json()).then(data=>{
-          const city=data.address.city||data.address.town||data.address.village||'';
-          const country=data.address.country||'';
-          userLocation.name=`${city}, ${country}`;
-          document.getElementById('locationText').textContent=`${city}, ${country}`;
-        }).catch(()=>{});
+async function sendMessageThenAppendLinks() {
+  await sendMessage();
+  // Cevap geldikten sonra 500ms bekle, sonra linkleri ekle
+  setTimeout(()=>{
+    const chatArea = document.getElementById('chatArea');
+    const msgs = chatArea.querySelectorAll('.message.ai');
+    const last = msgs[msgs.length-1];
+    if(last && !last.dataset.linksAdded) {
+      last.innerHTML += getTicketSitesHtml();
+      last.dataset.linksAdded = 'true';
     }
+  }, 500);
+}
+
+function addMessage(role, content) {
+  const chatArea = document.getElementById('chatArea');
+  const div = document.createElement('div');
+  div.className = `message ${role}`;
+  div.innerHTML = formatMessage(content);
+  chatArea.appendChild(div);
+  chatArea.scrollTop = chatArea.scrollHeight;
+  return div;
+}
+
+function formatMessage(text) {
+  const urlRegex = /(https?:\/\/[^\s<]+)/g;
+  return text
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+    .replace(urlRegex,'<a href="$1" target="_blank" rel="noopener">$1</a>')
+    .replace(/\n/g,'<br>');
+}
+
+function showTyping() {
+  const chatArea = document.getElementById('chatArea');
+  const div = document.createElement('div');
+  div.className='typing-indicator'; div.id='typingIndicator';
+  div.innerHTML='<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+  chatArea.appendChild(div);
+  chatArea.scrollTop = chatArea.scrollHeight;
+}
+function hideTyping() { const t=document.getElementById('typingIndicator'); if(t) t.remove(); }
+
+async function sendMessage() {
+  if(isLoading) return;
+  const input = document.getElementById('textInput');
+  const text = input.value.trim();
+  if(!text && !selectedImageBase64) return;
+  input.value=''; autoResize(input);
+  
+  const L = T[currentLang];
+  let userContent = [];
+  
+  if(selectedImageBase64) {
+    userContent.push({type:"image",source:{type:"base64",media_type:"image/jpeg",data:selectedImageBase64}});
+    addMessage('user', (text||'') + ' ' + L.photoAdded);
+  } else {
+    addMessage('user', text);
   }
+  
+  if(text) userContent.push({type:"text",text});
+  else if(selectedImageBase64) userContent.push({type:"text",text:L.photoAnalyze});
+  
+  removeImage();
+  conversationHistory.push({role:"user", content: userContent.length===1&&userContent[0].type==='text' ? text : userContent});
+  
+  isLoading = true;
+  showTyping();
+  
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('tr-TR',{day:'numeric',month:'long',year:'numeric'});
+  const timeStr = now.toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'});
+  const locInfo = userLocation ? `Konum: ${userLocation.name}, GPS: ${userLocation.lat},${userLocation.lon}, Ulke kodu: ${userLocation.countryCode}` : 'Konum yok';
 
-  const TICKET_SITES = {
-    kz: [{n:'Ticketon',u:'https://ticketon.kz'},{n:'Kinopark',u:'https://kinopark.kz'},{n:'Topbilet',u:'https://topbilet.kz'}],
-    tr: [{n:'Biletix',u:'https://www.biletix.com'},{n:'Passo',u:'https://www.passo.com.tr'},{n:'Bubilet',u:'https://www.bubilet.com'}],
-    ae: [{n:'Platinumlist',u:'https://platinumlist.net'},{n:'Ticketmaster UAE',u:'https://www.ticketmaster.ae'},{n:'Live Nation ME',u:'https://livenation.me'}],
-    us: [{n:'Ticketmaster',u:'https://www.ticketmaster.com'},{n:'Songkick',u:'https://www.songkick.com'},{n:'StubHub',u:'https://www.stubhub.com'}],
-    gb: [{n:'Ticketmaster UK',u:'https://www.ticketmaster.co.uk'},{n:'See Tickets',u:'https://www.seetickets.com'},{n:'Songkick',u:'https://www.songkick.com'}],
-    de: [{n:'Eventim',u:'https://www.eventim.de'},{n:'Ticketmaster DE',u:'https://www.ticketmaster.de'},{n:'Reservix',u:'https://www.reservix.de'}],
-    ru: [{n:'Kassir',u:'https://www.kassir.ru'},{n:'Afisha',u:'https://www.afisha.ru'},{n:'Ticketland',u:'https://www.ticketland.ru'}],
-    fr: [{n:'Fnac Tickets',u:'https://www.fnacspectacles.com'},{n:'Ticketmaster FR',u:'https://www.ticketmaster.fr'},{n:'Digitick',u:'https://www.digitick.com'}],
-    jp: [{n:'Ticket Pia',u:'https://t.pia.jp'},{n:'Lawson Ticket',u:'https://l-tike.com'},{n:'e+',u:'https://eplus.jp'}],
-    au: [{n:'Ticketek',u:'https://www.ticketek.com.au'},{n:'Ticketmaster AU',u:'https://www.ticketmaster.com.au'},{n:'Moshtix',u:'https://www.moshtix.com.au'}],
-    default: [{n:'Ticketmaster',u:'https://www.ticketmaster.com'},{n:'Songkick',u:'https://www.songkick.com'},{n:'StubHub',u:'https://www.stubhub.com'}]
-  };
-
-  function getTicketSitesHtml() {
-    const cc = (userLocation?.countryCode||'').toLowerCase();
-    const sites = TICKET_SITES[cc] || TICKET_SITES.default;
-    const labels = {tr:'🎟️ Bilet Siteleri:', en:'🎟️ Ticket Sites:', ru:'🎟️ Сайты билетов:'};
-    const label = labels[currentLang] || labels.tr;
-    const links = sites.map(s=>`<a href="${s.u}" target="_blank" rel="noopener">${s.n}</a>`).join(' &nbsp;|&nbsp; ');
-    return `\n\n---\n${label} ${links}`;
-  }
-
-  function handleMainBtn(type) {
-    const L=T[currentLang];
-    
-    let msg='';
-    if(type==='sinema') msg=L.btnMsgs.sinema;
-    else if(type==='tiyatro') msg=L.btnMsgs.tiyatro;
-    else if(type==='konser') msg=L.btnMsgs.konser;
-    else if(type==='doviz') msg=L.btnMsgs.doviz;
-    else {
-      const msgs={
-        tr:{arac:"Araç hakkında yardım istiyorum.",ev:"Ev hakkında yardım istiyorum.",nerede:"Bulunduğum yerde popüler yerler.",ucus:"Uçuş arama.",urun:"Ürün arama.",ceviri:"Çeviri yapmak istiyorum.",yemek:"Yemek siparişi vermek istiyorum."},
-        en:{arac:"I need help with vehicles.",ev:"I need help with homes.",nerede:"Popular places near me.",ucus:"Flight search.",urun:"Product search.",ceviri:"I want to translate something.",yemek:"I want to order food."},
-        ru:{arac:"Мне нужна помощь с транспортом.",ev:"Мне нужна помощь с жильём.",nerede:"Популярные места рядом.",ucus:"Поиск рейсов.",urun:"Поиск товаров.",ceviri:"Я хочу перевести текст.",yemek:"Я хочу заказать еду."}
-      };
-      msg=msgs[currentLang][type]||'Yardım istiyorum.';
-    }
-    
-    if(type==='sinema'||type==='tiyatro'||type==='konser') {
-      // Önce AI'dan bilgi al, sonra sabit linkleri ekle
-      document.getElementById('textInput').value=msg;
-      sendMessageWithCallback(type);
-    } else {
-      document.getElementById('textInput').value=msg;
-      sendMessage();
-    }
-  }
-
-  async function sendMessageWithCallback(type) {
-    await sendMessage();
-    // Cevap geldikten sonra sabit linkleri ekle
-    setTimeout(()=>{
-      const chatArea=document.getElementById('chatArea');
-      const lastAI=chatArea.querySelector('.message.ai:last-child');
-      if(lastAI && !lastAI.dataset.linksAdded) {
-        lastAI.innerHTML += getTicketSitesHtml();
-        lastAI.dataset.linksAdded='true';
-      }
-    }, 500);
-  }
-
-  function addMessage(role,content) {
-    const chatArea=document.getElementById('chatArea');
-    const div=document.createElement('div');
-    div.className=`message ${role}`;
-    div.innerHTML=formatMessage(content);
-    chatArea.appendChild(div);
-    chatArea.scrollTop=chatArea.scrollHeight;
-    return div;
-  }
-
-  function formatMessage(text) {
-    const urlRegex=/(https?:\/\/[^\s]+)/g;
-    return text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-      .replace(urlRegex,'<a href="$1" target="_blank" rel="noopener">$1</a>')
-      .replace(/\n/g,'<br>');
-  }
-
-  function showTyping() {
-    const chatArea=document.getElementById('chatArea');
-    const div=document.createElement('div');
-    div.className='typing-indicator'; div.id='typingIndicator';
-    div.innerHTML='<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
-    chatArea.appendChild(div); chatArea.scrollTop=chatArea.scrollHeight;
-  }
-  function hideTyping(){const t=document.getElementById('typingIndicator');if(t)t.remove();}
-
-  async function sendMessage() {
-    if(isLoading) return;
-    const input=document.getElementById('textInput');
-    const text=input.value.trim();
-    if(!text&&!selectedImageBase64) return;
-    input.value=''; autoResize(input);
-    const L=T[currentLang];
-    let userContent=[];
-    if(selectedImageBase64){
-      userContent.push({type:"image",source:{type:"base64",media_type:"image/jpeg",data:selectedImageBase64}});
-      addMessage('user',(text||'')+' '+L.photoAdded);
-    } else { addMessage('user',text); }
-    if(text) userContent.push({type:"text",text});
-    else if(selectedImageBase64) userContent.push({type:"text",text:L.photoAnalyze});
-    removeImage();
-    conversationHistory.push({role:"user",content:userContent.length===1&&userContent[0].type==='text'?text:userContent});
-    isLoading=true; showTyping();
-
-    const now=new Date();
-    const dateStr=now.toLocaleDateString('tr-TR',{day:'numeric',month:'long',year:'numeric'});
-    const timeStr=now.toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'});
-    const locInfo=userLocation?`Kullanicinin konumu: ${userLocation.name}, koordinatlar: ${userLocation.lat},${userLocation.lon}`:'Konum yok';
-
-    const systemPrompt=`Sen USZMate — USZ Digital kisisel AI asistani. Bugun: ${dateStr}, Saat: ${timeStr}. ${locInfo}. Kullanici ${L.systemLang} konusuyor, sen de MUTLAKA ${L.systemLang} dilinde cevap ver.
+  const systemPrompt = `Sen USZMate — USZ Digital kisisel AI asistani.
+Bugun: ${dateStr}, Saat: ${timeStr}.
+${locInfo}.
+Kullanici ${L.systemLang} konusuyor, sen de MUTLAKA ${L.systemLang} dilinde cevap ver.
 
 Her zaman web arastirmasi yap ve GUNCEL bilgi getir.
 
-ZORUNLU FORMAT — Her sorguda mutlaka su formatta ver:
-1. [Firma/Yer Adi]
-   Adres: [tam adres]
-   Tel: [telefon]
-   Web: [o urunun veya hizmetin oldugu direkt sayfa linki]
+ONEMLI KURALLAR:
+- Sinema/tiyatro/konser sorgularinda KESINLIKLE HICBIR LINK YAZMA. Ne film linki, ne bilet linki, hicbir link. Sadece bilgi ver.
+- Diger sorgularda: firma adi, adres, telefon ve web sitesi linkini ver. Max 5 sonuc.
+- Ucus fiyatlarini DOLAR $ olarak goster.
+- Gecmis tarihli etkinlik gosterme.
+- Kisa ve net cevaplar ver.`;
 
-Maximum 5 sonuc listele. Her sonucun yaninda MUTLAKA web linki olsun — genel site degil, o urunun veya hizmetin oldugu DIREKT sayfa.
-
-Ucus fiyatlarini DOLAR $ olarak goster.
-Arac sorgusunda: yetkili satis magazalari + web linki.
-2. el arac: internet satis siteleri + link.
-Ev sorgusunda: insaat firmalari veya emlak siteleri + link.
-Sinema/tiyatro/konser: sadece guncel ve gelecekteki gosterimler, gecmis tarihli gosterme. Her film/oyun icin: ad, basrol oyuncusu, IMDB puani, 3 cumle konu ozeti. Sinema/tiyatro/konser: sadece guncel ve gelecekteki gosterimler, gecmis tarihli gosterme. Her film/oyun icin: ad, basrol oyuncusu, IMDB puani, 3 cumle konu ozeti. BU COK ONEMLI: HICBIR SEKILDE HICBIR LINK YAZMA. Ne film linki, ne bilet linki, ne baska link. Sadece metin bilgisi ver. Linkler zaten otomatik eklenecek.
-Doviz: anlık kur bilgisi.
-Film isimlerini ${L.systemLang} diline cevir.`;
-
-    try {
-      const response=await fetch('/api/chat',{
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:2000,system:systemPrompt,messages:conversationHistory})
-      });
-      const data=await response.json();
-      hideTyping();
-      const reply=data.reply||L.connErr;
-      addMessage('ai',reply);
-      conversationHistory.push({role:"assistant",content:reply});
-    } catch(err){hideTyping();addMessage('ai',T[currentLang].connErr);}
-    isLoading=false;
+  try {
+    const response = await fetch('/api/chat', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({system: systemPrompt, messages: conversationHistory})
+    });
+    const data = await response.json();
+    hideTyping();
+    const reply = data.reply || L.connErr;
+    addMessage('ai', reply);
+    conversationHistory.push({role:"assistant", content: reply});
+  } catch(err) {
+    hideTyping();
+    addMessage('ai', T[currentLang].connErr);
   }
+  
+  isLoading = false;
+}
 
-  function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,120)+'px';}
-  function handleKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}}
+function autoResize(el) { el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,120)+'px'; }
+function handleKey(e) { if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();} }
 
-  function handleImage(event){
-    const file=event.target.files[0]; if(!file) return;
-    const reader=new FileReader();
-    reader.onload=e=>{selectedImageBase64=e.target.result.split(',')[1];document.getElementById('imagePreview').src=e.target.result;document.getElementById('imagePreviewWrap').style.display='block';};
-    reader.readAsDataURL(file); event.target.value='';
-  }
-  function removeImage(){selectedImageBase64=null;document.getElementById('imagePreviewWrap').style.display='none';document.getElementById('imagePreview').src='';}
+function handleImage(event) {
+  const file=event.target.files[0]; if(!file) return;
+  const reader=new FileReader();
+  reader.onload=e=>{ selectedImageBase64=e.target.result.split(',')[1]; document.getElementById('imagePreview').src=e.target.result; document.getElementById('imagePreviewWrap').style.display='block'; };
+  reader.readAsDataURL(file); event.target.value='';
+}
+function removeImage() { selectedImageBase64=null; document.getElementById('imagePreviewWrap').style.display='none'; document.getElementById('imagePreview').src=''; }
 
-  function toggleMic(){
-    const L=T[currentLang];
-    if(!('webkitSpeechRecognition' in window)&&!('SpeechRecognition' in window)){addMessage('ai',L.noMic);return;}
-    const btn=document.getElementById('micBtn');
-    if(isRecording){recognition.stop();isRecording=false;btn.classList.remove('recording');btn.textContent='🎤';return;}
-    const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-    recognition=new SR();
-    recognition.lang=currentLang==='tr'?'tr-TR':currentLang==='en'?'en-US':'ru-RU';
-    recognition.interimResults=false; recognition.maxAlternatives=1;
-    recognition.onstart=()=>{isRecording=true;btn.classList.add('recording');btn.textContent='⏹';};
-    recognition.onresult=e=>{const t=e.results[0][0].transcript;document.getElementById('textInput').value=t;autoResize(document.getElementById('textInput'));sendMessage();};
-    recognition.onend=()=>{isRecording=false;btn.classList.remove('recording');btn.textContent='🎤';};
-    recognition.onerror=()=>{isRecording=false;btn.classList.remove('recording');btn.textContent='🎤';};
-    recognition.start();
-  }
+function toggleMic() {
+  const L = T[currentLang];
+  if(!('webkitSpeechRecognition' in window)&&!('SpeechRecognition' in window)){addMessage('ai',L.noMic);return;}
+  const btn = document.getElementById('micBtn');
+  if(isRecording){recognition.stop();isRecording=false;btn.classList.remove('recording');btn.textContent='🎤';return;}
+  const SR = window.SpeechRecognition||window.webkitSpeechRecognition;
+  recognition = new SR();
+  recognition.lang = currentLang==='tr'?'tr-TR':currentLang==='en'?'en-US':'ru-RU';
+  recognition.interimResults=false; recognition.maxAlternatives=1;
+  recognition.onstart=()=>{isRecording=true;btn.classList.add('recording');btn.textContent='⏹';};
+  recognition.onresult=e=>{const t=e.results[0][0].transcript;document.getElementById('textInput').value=t;autoResize(document.getElementById('textInput'));sendMessage();};
+  recognition.onend=()=>{isRecording=false;btn.classList.remove('recording');btn.textContent='🎤';};
+  recognition.onerror=()=>{isRecording=false;btn.classList.remove('recording');btn.textContent='🎤';};
+  recognition.start();
+}
 </script>
 </body>
 </html>
