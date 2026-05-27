@@ -318,7 +318,68 @@ function setLang(lang, btn) {
       }).catch(()=>{});
   }
 }
+function showCurrencyCalculator() {
+  const existing = document.getElementById('currencyModal');
+  if(existing) existing.remove();
+  
+  const modal = document.createElement('div');
+  modal.id = 'currencyModal';
+  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;';
+  modal.innerHTML = `
+    <div style="background:#0a1628;border:1px solid rgba(245,200,0,0.3);border-radius:16px;padding:20px;width:100%;max-width:340px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+        <span style="color:#f5c800;font-size:16px;font-weight:700;">💱 Döviz Hesaplama</span>
+        <button onclick="document.getElementById('currencyModal').remove()" style="background:transparent;border:none;color:#f5c800;font-size:20px;cursor:pointer;">✕</button>
+      </div>
+      <div style="display:flex;gap:8px;margin-bottom:12px;">
+        <input type="number" id="calcAmount" placeholder="Miktar" style="flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(245,200,0,0.2);border-radius:8px;padding:10px;color:white;font-size:15px;outline:none;">
+        <select id="calcFrom" style="background:#0f2040;border:1px solid rgba(245,200,0,0.2);border-radius:8px;padding:10px;color:#f5c800;font-size:14px;outline:none;">
+          <option value="USD">USD $</option>
+          <option value="EUR">EUR €</option>
+          <option value="GBP">GBP £</option>
+          <option value="TRY">TRY ₺</option>
+          <option value="KZT">KZT ₸</option>
+          <option value="AED">AED د.إ</option>
+        </select>
+      </div>
+      <div style="text-align:center;color:rgba(245,200,0,0.6);margin-bottom:12px;">▼</div>
+      <div style="margin-bottom:16px;">
+        <select id="calcTo" style="width:100%;background:#0f2040;border:1px solid rgba(245,200,0,0.2);border-radius:8px;padding:10px;color:#f5c800;font-size:14px;outline:none;">
+          <option value="KZT">KZT ₸</option>
+          <option value="USD">USD $</option>
+          <option value="EUR">EUR €</option>
+          <option value="GBP">GBP £</option>
+          <option value="TRY">TRY ₺</option>
+          <option value="AED">AED د.إ</option>
+        </select>
+      </div>
+      <button onclick="calcCurrency()" style="width:100%;background:#f5c800;color:#0a1628;border:none;border-radius:8px;padding:12px;font-size:15px;font-weight:700;cursor:pointer;">HESAPLA</button>
+      <div id="calcResult" style="margin-top:12px;text-align:center;color:#f5c800;font-size:18px;font-weight:700;min-height:28px;"></div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+}
 
+async function calcCurrency() {
+  const amount = parseFloat(document.getElementById('calcAmount').value);
+  const from = document.getElementById('calcFrom').value;
+  const to = document.getElementById('calcTo').value;
+  const result = document.getElementById('calcResult');
+  
+  if(!amount || isNaN(amount)) { result.textContent = 'Miktar giriniz'; return; }
+  if(from === to) { result.textContent = amount + ' ' + from; return; }
+  
+  result.textContent = '...';
+  
+  try {
+    const r = await fetch(`https://api.frankfurter.app/latest?amount=${amount}&from=${from}&to=${to}`);
+    const d = await r.json();
+    const converted = d.rates[to];
+    result.textContent = `${amount} ${from} = ${converted.toFixed(2)} ${to}`;
+  } catch {
+    result.textContent = 'Kur bilgisi alinamadi';
+  }
+}
 function getTicketSitesHtml() {
   const cc = (userLocation?.countryCode||'').toLowerCase();
   const sites = TICKET_SITES[cc] || TICKET_SITES.default;
