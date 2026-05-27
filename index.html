@@ -26,8 +26,6 @@
     * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
     body { font-family:'Outfit',sans-serif; background:var(--navy); color:var(--text); height:100dvh; display:flex; flex-direction:column; overflow:hidden; }
     body::before { content:''; position:fixed; inset:0; background:radial-gradient(ellipse at 20% 20%,rgba(245,200,0,0.06) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(245,200,0,0.04) 0%,transparent 50%); pointer-events:none; z-index:0; }
-
-    /* LOGIN */
     #loginScreen { position:fixed; inset:0; background:var(--navy); display:flex; flex-direction:column; align-items:center; justify-content:center; z-index:100; gap:24px; padding:40px; }
     #loginScreen::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 40%,rgba(245,200,0,0.08) 0%,transparent 60%); pointer-events:none; }
     .login-logo { font-family:'Bebas Neue',sans-serif; font-size:72px; color:var(--yellow); letter-spacing:8px; text-shadow:0 0 40px rgba(245,200,0,0.4); animation:pulse-glow 3s ease-in-out infinite; }
@@ -40,12 +38,8 @@
     .login-input::placeholder { letter-spacing:1px; color:var(--text-muted); }
     .login-btn { background:var(--yellow); color:var(--navy); border:none; border-radius:12px; padding:14px; font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:2px; cursor:pointer; }
     .login-error { color:#ff4d4d; font-size:13px; text-align:center; min-height:18px; }
-
-    /* APP */
     #app { display:none; flex-direction:column; height:100dvh; position:relative; z-index:1; }
     #app.visible { display:flex; }
-
-    /* HEADER */
     header { display:flex; align-items:flex-start; justify-content:space-between; padding:10px 14px 6px; background:rgba(10,22,40,0.95); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); flex-shrink:0; }
     .header-left { display:flex; flex-direction:column; gap:1px; }
     .header-brand { font-size:9px; color:var(--text-muted); letter-spacing:1.5px; text-transform:uppercase; line-height:1.6; }
@@ -56,19 +50,13 @@
     .lang-selector { display:flex; gap:3px; }
     .lang-btn { background:transparent; border:1px solid transparent; border-radius:6px; padding:3px 7px; color:var(--text-muted); font-size:10px; font-weight:600; cursor:pointer; transition:all 0.2s; }
     .lang-btn.active { background:var(--yellow-glow); border-color:var(--yellow); color:var(--yellow); }
-
-    /* LOCATION + DATETIME */
     .location-bar { background:rgba(245,200,0,0.08); border-bottom:1px solid var(--border); padding:4px 14px; display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
     .loc-text { font-size:11px; color:var(--yellow); }
     .datetime-text { font-size:10px; color:rgba(245,200,0,0.7); }
-
-    /* MAIN BUTTONS */
     .main-buttons { display:grid; grid-template-columns:repeat(4,1fr); gap:4px; padding:6px 8px; background:rgba(10,22,40,0.95); flex-shrink:0; border-bottom:1px solid var(--border); }
     .main-btn { background:var(--navy-mid); border:1px solid var(--border); border-radius:6px; padding:4px 6px; color:var(--yellow); font-size:10px; font-weight:600; cursor:pointer; display:flex; flex-direction:row; align-items:center; gap:4px; transition:all 0.2s; }
     .main-btn:active { transform:scale(0.95); background:var(--yellow-glow); }
     .main-btn-icon { font-size:14px; flex-shrink:0; }
-
-    /* CHAT */
     #chatArea { flex:1; overflow-y:auto; padding:12px; display:flex; flex-direction:column; gap:10px; scroll-behavior:smooth; background:#e8e8e8; border-bottom:2px solid var(--yellow); }
     #chatArea::-webkit-scrollbar{width:4px;}
     #chatArea::-webkit-scrollbar-thumb{background:#aaa;border-radius:2px;}
@@ -83,14 +71,10 @@
     .typing-dot:nth-child(2){animation-delay:0.2s;}
     .typing-dot:nth-child(3){animation-delay:0.4s;}
     @keyframes typing { 0%,100%{opacity:0.4;transform:translateY(0);}50%{opacity:1;transform:translateY(-4px);} }
-
-    /* IMAGE PREVIEW */
     .image-preview-wrap { padding:6px 14px 0; flex-shrink:0; background:rgba(10,22,40,0.95); }
     .image-preview { position:relative; display:inline-block; }
     .image-preview img { height:56px; width:56px; object-fit:cover; border-radius:8px; border:1px solid var(--border); }
     .image-preview-remove { position:absolute; top:-6px; right:-6px; background:#ff4d4d; border:none; border-radius:50%; width:18px; height:18px; color:white; font-size:11px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
-
-    /* INPUT */
     .input-area { padding:8px 12px; padding-bottom:max(8px,env(safe-area-inset-bottom)); background:rgba(10,22,40,0.95); flex-shrink:0; }
     .input-row { display:flex; gap:6px; align-items:flex-end; }
     #textInput { flex:1; background:var(--input-bg); border:1px solid var(--border); border-radius:12px; padding:10px 13px; color:var(--text); font-family:'Outfit',sans-serif; font-size:14px; outline:none; resize:none; max-height:120px; min-height:42px; line-height:1.5; }
@@ -101,11 +85,16 @@
     @keyframes rec-pulse { 0%,100%{box-shadow:0 0 0 0 rgba(255,77,77,0.4);}50%{box-shadow:0 0 0 8px rgba(255,77,77,0);} }
     .send-btn { width:42px; height:42px; border-radius:10px; border:none; background:var(--yellow); color:var(--navy); cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:16px; }
     #fileInput{display:none;}
+    .calc-box { display:flex; flex-direction:column; gap:8px; }
+    .calc-box input, .calc-box select { border:1px solid #ccc; border-radius:8px; padding:8px 10px; font-size:14px; outline:none; background:white; color:#111; }
+    .calc-row { display:flex; gap:6px; }
+    .calc-row input { flex:1; }
+    .calc-btn { background:#0a1628; color:#f5c800; border:none; border-radius:8px; padding:10px; font-weight:700; cursor:pointer; font-size:14px; }
+    .calc-result { text-align:center; font-weight:700; color:#0a1628; font-size:16px; min-height:24px; margin-top:4px; }
   </style>
 </head>
 <body>
 
-<!-- LOGIN -->
 <div id="loginScreen">
   <div class="login-logo">USZ&nbsp;MATE</div>
   <div class="login-subtitle">USZ Digital</div>
@@ -117,7 +106,6 @@
   </div>
 </div>
 
-<!-- APP -->
 <div id="app">
   <header>
     <div class="header-left">
@@ -174,78 +162,59 @@
 <script>
 const PASSWORD = "uszmate2026";
 
-// Bilet siteleri - ulke koduna gore
 const TICKET_SITES = {
-  kz: [{n:'Ticketon',u:'https://ticketon.kz'},{n:'Kinopark',u:'https://kinopark.kz'},{n:'Topbilet',u:'https://topbilet.kz'}],
-  tr: [{n:'Biletix',u:'https://www.biletix.com'},{n:'Passo',u:'https://www.passo.com.tr'},{n:'Bubilet',u:'https://www.bubilet.com'}],
-  ae: [{n:'Platinumlist',u:'https://platinumlist.net'},{n:'Ticketmaster UAE',u:'https://www.ticketmaster.ae'},{n:'Live Nation ME',u:'https://livenation.me'}],
-  us: [{n:'Ticketmaster',u:'https://www.ticketmaster.com'},{n:'Songkick',u:'https://www.songkick.com'},{n:'StubHub',u:'https://www.stubhub.com'}],
-  gb: [{n:'Ticketmaster UK',u:'https://www.ticketmaster.co.uk'},{n:'See Tickets',u:'https://www.seetickets.com'},{n:'Songkick',u:'https://www.songkick.com'}],
-  de: [{n:'Eventim',u:'https://www.eventim.de'},{n:'Ticketmaster DE',u:'https://www.ticketmaster.de'},{n:'Reservix',u:'https://www.reservix.de'}],
-  ru: [{n:'Kassir',u:'https://www.kassir.ru'},{n:'Afisha',u:'https://www.afisha.ru'},{n:'Ticketland',u:'https://www.ticketland.ru'}],
-  fr: [{n:'Fnac Tickets',u:'https://www.fnacspectacles.com'},{n:'Ticketmaster FR',u:'https://www.ticketmaster.fr'},{n:'Digitick',u:'https://www.digitick.com'}],
-  jp: [{n:'Ticket Pia',u:'https://t.pia.jp'},{n:'Lawson Ticket',u:'https://l-tike.com'},{n:'e+',u:'https://eplus.jp'}],
-  au: [{n:'Ticketek',u:'https://www.ticketek.com.au'},{n:'Ticketmaster AU',u:'https://www.ticketmaster.com.au'},{n:'Moshtix',u:'https://www.moshtix.com.au'}],
-  default: [{n:'Ticketmaster',u:'https://www.ticketmaster.com'},{n:'Songkick',u:'https://www.songkick.com'},{n:'StubHub',u:'https://www.stubhub.com'}]
+  kz:[{n:'Ticketon',u:'https://ticketon.kz'},{n:'Kinopark',u:'https://kinopark.kz'},{n:'Topbilet',u:'https://topbilet.kz'}],
+  tr:[{n:'Biletix',u:'https://www.biletix.com'},{n:'Passo',u:'https://www.passo.com.tr'},{n:'Bubilet',u:'https://www.bubilet.com'}],
+  ae:[{n:'Platinumlist',u:'https://platinumlist.net'},{n:'Ticketmaster UAE',u:'https://www.ticketmaster.ae'},{n:'Live Nation ME',u:'https://livenation.me'}],
+  us:[{n:'Ticketmaster',u:'https://www.ticketmaster.com'},{n:'Songkick',u:'https://www.songkick.com'},{n:'StubHub',u:'https://www.stubhub.com'}],
+  gb:[{n:'Ticketmaster UK',u:'https://www.ticketmaster.co.uk'},{n:'See Tickets',u:'https://www.seetickets.com'},{n:'Songkick',u:'https://www.songkick.com'}],
+  de:[{n:'Eventim',u:'https://www.eventim.de'},{n:'Ticketmaster DE',u:'https://www.ticketmaster.de'},{n:'Reservix',u:'https://www.reservix.de'}],
+  ru:[{n:'Kassir',u:'https://www.kassir.ru'},{n:'Afisha',u:'https://www.afisha.ru'},{n:'Ticketland',u:'https://www.ticketland.ru'}],
+  fr:[{n:'Fnac Tickets',u:'https://www.fnacspectacles.com'},{n:'Ticketmaster FR',u:'https://www.ticketmaster.fr'},{n:'Digitick',u:'https://www.digitick.com'}],
+  jp:[{n:'Ticket Pia',u:'https://t.pia.jp'},{n:'Lawson Ticket',u:'https://l-tike.com'},{n:'e+',u:'https://eplus.jp'}],
+  au:[{n:'Ticketek',u:'https://www.ticketek.com.au'},{n:'Ticketmaster AU',u:'https://www.ticketmaster.com.au'},{n:'Moshtix',u:'https://www.moshtix.com.au'}],
+  default:[{n:'Ticketmaster',u:'https://www.ticketmaster.com'},{n:'Songkick',u:'https://www.songkick.com'},{n:'StubHub',u:'https://www.stubhub.com'}]
 };
 
 const T = {
-  tr: {
-    placeholder:"Mesajinizi yazin...",
-    wrongPass:"Hatali sifre.",
-    locating:"Konum aliniyor...",
-    connErr:"Baglanti hatasi. Lutfen tekrar deneyin.",
-    noMic:"Sesli komut desteklenmiyor.",
-    photoAdded:"[Fotograf eklendi]",
-    photoAnalyze:"Bu fotografi analiz et.",
-    systemLang:"Turkce",
-    loginBtn:"GIRIS YAP",
-    loginAiNotice:"Bu uygulama yapay zeka ile calismaktadir.",
-    aiNotice:"Yapay zeka ile calisir",
-    btns:["Araç","Ev","Nerede","Uçuş","Sinema","Tiyatro","Konser","Döviz","Ürün","Çeviri","Yemek","Kamera"],
-    ticketLabel:"🎟️ Bilet Siteleri:",
+  tr:{
+    placeholder:"Mesajinizi yazin...", wrongPass:"Hatali sifre.", locating:"Konum aliniyor...",
+    connErr:"Baglanti hatasi.", noMic:"Sesli komut desteklenmiyor.",
+    photoAdded:"[Fotograf eklendi]", photoAnalyze:"Bu fotografi analiz et.",
+    systemLang:"Turkce", loginBtn:"GIRIS YAP",
+    loginAiNotice:"Bu uygulama yapay zeka ile calismaktadir.", aiNotice:"Yapay zeka ile calisir",
+    btns:["Arac","Ev","Nerede","Ucus","Sinema","Tiyatro","Konser","Doviz","Urun","Ceviri","Yemek","Kamera"],
+    ticketLabel:"Bilet Siteleri:",
     sinemaMsg:"Bulundugum lokasyonda su an gosterimde olan en yuksek reytingli 5 filmi listele. Her film icin: Film adi ve Turkce cevirisi, basrol oyuncusu, IMDB puani, 3 cumle konu ozeti. Hicbir link yazma.",
     tiyatroMsg:"Bulundugum lokasyonda su an sahnede olan en iyi 5 tiyatro oyununu listele. Her oyun icin: Oyun adi, basrol oyuncusu, 3 cumle konu ozeti. Hicbir link yazma.",
     konserMsg:"Bulundugum lokasyondaki onumuzdeki 3 ay icindeki konserleri listele. Her konser icin: Sanatci adi, tarih, mekan. Gecmis tarihli konser gosterme. Hicbir link yazma.",
-    dovizMsg:"Bulundugum lokasyonun para biriminin 1 dolar karsiliginı goster. Sadece bu bilgiyi ver."
+    calcTitle:"Doviz Hesaplama", calcBtn:"HESAPLA", calcPlaceholder:"Miktar"
   },
-  en: {
-    placeholder:"Type your message...",
-    wrongPass:"Wrong password.",
-    locating:"Getting location...",
-    connErr:"Connection error. Please try again.",
-    noMic:"Voice commands not supported.",
-    photoAdded:"[Photo added]",
-    photoAnalyze:"Analyze this photo.",
-    systemLang:"English",
-    loginBtn:"LOGIN",
-    loginAiNotice:"This app is powered by artificial intelligence.",
-    aiNotice:"Powered by AI",
+  en:{
+    placeholder:"Type your message...", wrongPass:"Wrong password.", locating:"Getting location...",
+    connErr:"Connection error.", noMic:"Voice commands not supported.",
+    photoAdded:"[Photo added]", photoAnalyze:"Analyze this photo.",
+    systemLang:"English", loginBtn:"LOGIN",
+    loginAiNotice:"This app is powered by artificial intelligence.", aiNotice:"Powered by AI",
     btns:["Vehicle","Home","Nearby","Flight","Cinema","Theater","Concert","Currency","Product","Translate","Food","Camera"],
-    ticketLabel:"🎟️ Ticket Sites:",
-    sinemaMsg:"List the top 5 highest-rated movies currently showing in my location. For each: Movie name (with English title), lead actor, IMDB rating, 3-sentence plot summary. Do not include any links.",
-    tiyatroMsg:"List the top 5 theater plays currently on stage in my location. For each: Play name, lead actor, 3-sentence plot summary. Do not include any links.",
+    ticketLabel:"Ticket Sites:",
+    sinemaMsg:"List the top 5 highest-rated movies currently showing in my location. For each: Movie name with English title, lead actor, IMDB rating, 3-sentence plot summary. Do not include any links.",
+    tiyatroMsg:"List the top 5 theater plays currently on stage in my location. For each: Play name, lead actor, 3-sentence summary. Do not include any links.",
     konserMsg:"List concerts in my location for the next 3 months. For each: Artist name, date, venue. No past dates. Do not include any links.",
-    dovizMsg:"Show the local currency exchange rate for 1 USD only."
+    calcTitle:"Currency Calculator", calcBtn:"CALCULATE", calcPlaceholder:"Amount"
   },
-  ru: {
-    placeholder:"Введите сообщение...",
-    wrongPass:"Неверный пароль.",
-    locating:"Определение местоположения...",
-    connErr:"Ошибка подключения.",
-    noMic:"Голосовые команды не поддерживаются.",
-    photoAdded:"[Фото добавлено]",
-    photoAnalyze:"Проанализируй это фото.",
-    systemLang:"Русском",
-    loginBtn:"ВОЙТИ",
-    loginAiNotice:"Это приложение работает на основе ИИ.",
-    aiNotice:"Работает на ИИ",
+  ru:{
+    placeholder:"Введите сообщение...", wrongPass:"Неверный пароль.", locating:"Определение местоположения...",
+    connErr:"Ошибка подключения.", noMic:"Голосовые команды не поддерживаются.",
+    photoAdded:"[Фото добавлено]", photoAnalyze:"Проанализируй это фото.",
+    systemLang:"Русском", loginBtn:"ВОЙТИ",
+    loginAiNotice:"Это приложение работает на основе ИИ.", aiNotice:"Работает на ИИ",
     btns:["Авто","Жильё","Где","Рейс","Кино","Театр","Концерт","Валюта","Товар","Перевод","Еда","Камера"],
-    ticketLabel:"🎟️ Сайты билетов:",
-    sinemaMsg:"Список 5 лучших фильмов в прокате в моём городе. Для каждого: название фильма, главный актёр, рейтинг IMDB, краткий сюжет в 3 предложениях. Никаких ссылок.",
+    ticketLabel:"Сайты билетов:",
+    sinemaMsg:"Список 5 лучших фильмов в прокате в моём городе. Для каждого: название, главный актёр, рейтинг IMDB, краткий сюжет в 3 предложениях. Никаких ссылок.",
     tiyatroMsg:"Список 5 лучших спектаклей в моём городе. Для каждого: название, главный актёр, краткий сюжет. Никаких ссылок.",
     konserMsg:"Концерты в моём городе на следующие 3 месяца. Для каждого: артист, дата, место. Без прошедших дат. Никаких ссылок.",
-    dovizMsg:"Покажи только курс местной валюты к 1 доллару."
+    calcTitle:"Конвертер валют", calcBtn:"РАССЧИТАТЬ", calcPlaceholder:"Сумма"
   }
 };
 
@@ -268,8 +237,9 @@ document.getElementById('passwordInput').addEventListener('keydown', e=>{ if(e.k
 
 function updateDateTime() {
   const now = new Date();
-  const d = now.toLocaleDateString(currentLang==='tr'?'tr-TR':currentLang==='en'?'en-US':'ru-RU', {day:'numeric',month:'short',year:'numeric'});
-  const t = now.toLocaleTimeString(currentLang==='tr'?'tr-TR':currentLang==='en'?'en-US':'ru-RU', {hour:'2-digit',minute:'2-digit'});
+  const loc = currentLang==='tr'?'tr-TR':currentLang==='en'?'en-US':'ru-RU';
+  const d = now.toLocaleDateString(loc,{day:'numeric',month:'short',year:'numeric'});
+  const t = now.toLocaleTimeString(loc,{hour:'2-digit',minute:'2-digit'});
   const el = document.getElementById('datetimeText');
   if(el) el.textContent = d + ' ' + t;
 }
@@ -281,16 +251,16 @@ function getLocation() {
     const lat=pos.coords.latitude, lon=pos.coords.longitude;
     userLocation = {lat, lon, name:'', countryCode:''};
     try {
-      const r = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&accept-language=${currentLang}`);
+      const r = await fetch('https://nominatim.openstreetmap.org/reverse?lat='+lat+'&lon='+lon+'&format=json&accept-language='+currentLang);
       const d = await r.json();
       const city = d.address.city||d.address.town||d.address.village||'';
       const country = d.address.country||'';
       const cc = d.address.country_code||'';
-      userLocation.name = `${city}, ${country}`;
+      userLocation.name = city+', '+country;
       userLocation.countryCode = cc;
-      document.getElementById('locationText').textContent = `${city}, ${country}`;
+      document.getElementById('locationText').textContent = city+', '+country;
     } catch {
-      userLocation.name = `${lat.toFixed(3)}, ${lon.toFixed(3)}`;
+      userLocation.name = lat.toFixed(3)+', '+lon.toFixed(3);
       document.getElementById('locationText').textContent = userLocation.name;
     }
   }, ()=>{ document.getElementById('locationText').textContent = T[currentLang].locating; });
@@ -307,47 +277,73 @@ function setLang(lang, btn) {
   document.getElementById('loginBtn').textContent = L.loginBtn;
   L.btns.forEach((text,i)=>{ const el=document.getElementById('btn'+(i+1)); if(el) el.textContent=text; });
   updateDateTime();
-  // Lokasyonu yeni dilde guncelle
   if(userLocation && userLocation.lat) {
-    fetch(`https://nominatim.openstreetmap.org/reverse?lat=${userLocation.lat}&lon=${userLocation.lon}&format=json&accept-language=${lang}`)
+    fetch('https://nominatim.openstreetmap.org/reverse?lat='+userLocation.lat+'&lon='+userLocation.lon+'&format=json&accept-language='+lang)
       .then(r=>r.json()).then(d=>{
         const city=d.address.city||d.address.town||d.address.village||'';
         const country=d.address.country||'';
-        userLocation.name=`${city}, ${country}`;
-        document.getElementById('locationText').textContent=`${city}, ${country}`;
+        userLocation.name=city+', '+country;
+        document.getElementById('locationText').textContent=city+', '+country;
       }).catch(()=>{});
   }
 }
+
+function getTicketSitesHtml() {
+  const cc = (userLocation?.countryCode||'').toLowerCase();
+  const sites = TICKET_SITES[cc] || TICKET_SITES.default;
+  const label = T[currentLang].ticketLabel;
+  const links = sites.map(s=>'<a href="'+s.u+'" target="_blank" rel="noopener">'+s.n+'</a>').join(' | ');
+  return '<br><br><strong>'+label+'</strong> '+links;
+}
+
+function handleBtn(type) {
+  const L = T[currentLang];
+  const isEntertainment = ['sinema','tiyatro','konser'].includes(type);
+
+  if(type==='doviz') {
+    const locName = userLocation?.name||'bulundugum yer';
+    document.getElementById('textInput').value = locName+' lokasyonunun resmi para biriminin 1 dolar karsiligi nedir? Sadece bu bilgiyi ver.';
+    sendMessage();
+    setTimeout(addCurrencyCalculator, 3000);
+    return;
+  }
+
+  let msg = '';
+  if(type==='sinema') msg = L.sinemaMsg;
+  else if(type==='tiyatro') msg = L.tiyatroMsg;
+  else if(type==='konser') msg = L.konserMsg;
+  else {
+    const msgs = {
+      tr:{arac:"Arac hakkinda yardim istiyorum.",ev:"Ev hakkinda yardim istiyorum.",nerede:"Bulundugum yerde populer yerler.",ucus:"Ucus aramak istiyorum.",urun:"Urun aramak istiyorum.",ceviri:"Ceviri yapmak istiyorum.",yemek:"Yemek siparisi vermek istiyorum."},
+      en:{arac:"I need help with vehicles.",ev:"I need help finding a home.",nerede:"Popular places near me.",ucus:"I want to search flights.",urun:"I want to search for a product.",ceviri:"I want to translate something.",yemek:"I want to order food."},
+      ru:{arac:"Мне нужна помощь с транспортом.",ev:"Мне нужна помощь с жильём.",nerede:"Популярные места рядом.",ucus:"Хочу найти рейс.",urun:"Хочу найти товар.",ceviri:"Хочу перевести текст.",yemek:"Хочу заказать еду."}
+    };
+    msg = msgs[currentLang][type] || '';
+  }
+
+  document.getElementById('textInput').value = msg;
+  if(isEntertainment) sendMessageThenAppendLinks();
+  else sendMessage();
+}
+
 function addCurrencyCalculator() {
+  const L = T[currentLang];
   const chatArea = document.getElementById('chatArea');
   const div = document.createElement('div');
   div.className = 'message ai';
-  div.innerHTML = `
-    <div style="display:flex;flex-direction:column;gap:8px;">
-      <div style="font-weight:700;color:#0a1628;margin-bottom:4px;">💱 Döviz Hesaplama</div>
-      <div style="display:flex;gap:6px;">
-        <input type="number" id="calcAmount" placeholder="Miktar" style="flex:1;border:1px solid #ccc;border-radius:8px;padding:8px;font-size:14px;outline:none;">
-        <select id="calcFrom" style="background:white;border:1px solid #ccc;border-radius:8px;padding:8px;font-size:13px;outline:none;">
-          <option value="USD">USD $</option>
-          <option value="EUR">EUR €</option>
-          <option value="GBP">GBP £</option>
-          <option value="TRY">TRY ₺</option>
-          <option value="KZT">KZT ₸</option>
-          <option value="AED">AED د.إ</option>
-        </select>
-      </div>
-      <select id="calcTo" style="background:white;border:1px solid #ccc;border-radius:8px;padding:8px;font-size:13px;outline:none;">
-        <option value="KZT">KZT ₸</option>
-        <option value="USD">USD $</option>
-        <option value="EUR">EUR €</option>
-        <option value="GBP">GBP £</option>
-        <option value="TRY">TRY ₺</option>
-        <option value="AED">AED د.إ</option>
-      </select>
-      <button onclick="calcCurrency()" style="background:#0a1628;color:#f5c800;border:none;border-radius:8px;padding:10px;font-weight:700;cursor:pointer;font-size:14px;">HESAPLA</button>
-      <div id="calcResult" style="text-align:center;font-weight:700;color:#0a1628;font-size:16px;min-height:24px;"></div>
-    </div>
-  `;
+  div.innerHTML = '<div class="calc-box">'
+    + '<strong style="color:#0a1628;">💱 '+L.calcTitle+'</strong>'
+    + '<div class="calc-row">'
+    + '<input type="number" id="calcAmount" placeholder="'+L.calcPlaceholder+'" />'
+    + '<select id="calcFrom">'
+    + '<option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option><option value="TRY">TRY ₺</option><option value="KZT">KZT ₸</option><option value="AED">AED د.إ</option>'
+    + '</select></div>'
+    + '<select id="calcTo" style="width:100%">'
+    + '<option value="KZT">KZT ₸</option><option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option><option value="TRY">TRY ₺</option><option value="AED">AED د.إ</option>'
+    + '</select>'
+    + '<button class="calc-btn" onclick="calcCurrency()">'+L.calcBtn+'</button>'
+    + '<div class="calc-result" id="calcResult"></div>'
+    + '</div>';
   chatArea.appendChild(div);
   chatArea.scrollTop = chatArea.scrollHeight;
 }
@@ -357,81 +353,31 @@ async function calcCurrency() {
   const from = document.getElementById('calcFrom').value;
   const to = document.getElementById('calcTo').value;
   const result = document.getElementById('calcResult');
-  
-  if(!amount || isNaN(amount)) { result.textContent = 'Miktar giriniz'; return; }
-  if(from === to) { result.textContent = amount + ' ' + from; return; }
-  
-  result.textContent = '...';
-  
+  if(!amount || isNaN(amount)) { result.textContent='Miktar giriniz'; return; }
+  if(from===to) { result.textContent=amount+' '+from; return; }
+  result.textContent='...';
   try {
-    const r = await fetch(`https://open.er-api.com/v6/latest/${from}`);
+    const r = await fetch('https://open.er-api.com/v6/latest/'+from);
     const d = await r.json();
     if(d.rates && d.rates[to]) {
-      const converted = (amount * d.rates[to]).toFixed(2);
-      result.textContent = `${amount} ${from} = ${converted} ${to}`;
+      result.textContent = amount+' '+from+' = '+(amount*d.rates[to]).toFixed(2)+' '+to;
     } else {
-      result.textContent = 'Kur bilgisi alinamadi';
+      result.textContent='Kur bilgisi alinamadi';
     }
   } catch {
-    result.textContent = 'Baglanti hatasi';
-  }
-}
-function getTicketSitesHtml() {
-  const cc = (userLocation?.countryCode||'').toLowerCase();
-  const sites = TICKET_SITES[cc] || TICKET_SITES.default;
-  const label = T[currentLang].ticketLabel;
-  const links = sites.map(s=>`<a href="${s.u}" target="_blank" rel="noopener">${s.n}</a>`).join(' | ');
-  return `<br><br>${label} ${links}`;
-}
-
-function handleBtn(type) {
-  const L = T[currentLang];
-  const isEntertainment = ['sinema','tiyatro','konser'].includes(type);
-  
-  let msg = '';
-  if(type==='sinema') msg = L.sinemaMsg;
-  else if(type==='tiyatro') msg = L.tiyatroMsg;
-  else if(type==='konser') msg = L.konserMsg;
-  else if(type==='doviz') {
-    const locName = userLocation?.name||'bulundugum yer';
-    document.getElementById('textInput').value = `${locName} lokasyonunun resmi para biriminin 1 dolar karsiligi nedir? Sadece bu bilgiyi ver.`;
-    sendMessage();
-    setTimeout(addCurrencyCalculator, 3000);
-    return;
-  } 
-    document.getElementById('textInput').value = `${userLocation?.name||'bulundugum yer'} lokasyonunun resmi para biriminin 1 dolar karsiligi nedir? Sadece bu bilgiyi ver.`;
-    sendMessage();
-    setTimeout(showCurrencyCalculator, 2000);
-    return;
-  }
-  else {
-    const msgs = {
-      tr:{arac:"Arac hakkinda yardim istiyorum.",ev:"Ev hakkinda yardim istiyorum.",nerede:"Bulundugum yerde populer yerler.",ucus:"Ucus aramak istiyorum.",urun:"Urun aramak istiyorum.",ceviri:"Ceviri yapmak istiyorum.",yemek:"Yemek siparisi vermek istiyorum."},
-      en:{arac:"I need help with vehicles.",ev:"I need help finding a home.",nerede:"Popular places near me.",ucus:"I want to search flights.",urun:"I want to search for a product.",ceviri:"I want to translate something.",yemek:"I want to order food."},
-      ru:{arac:"Мне нужна помощь с транспортом.",ev:"Мне нужна помощь с жильём.",nerede:"Популярные места рядом.",ucus:"Хочу найти рейс.",urun:"Хочу найти товар.",ceviri:"Хочу перевести текст.",yemek:"Хочу заказать еду."}
-    };
-    msg = msgs[currentLang][type] || '';
-  }
-  
-  document.getElementById('textInput').value = msg;
-  
-  if(isEntertainment) {
-    sendMessageThenAppendLinks();
-  } else {
-    sendMessage();
+    result.textContent='Baglanti hatasi';
   }
 }
 
 async function sendMessageThenAppendLinks() {
   await sendMessage();
-  // Cevap geldikten sonra 500ms bekle, sonra linkleri ekle
   setTimeout(()=>{
     const chatArea = document.getElementById('chatArea');
     const msgs = chatArea.querySelectorAll('.message.ai');
     const last = msgs[msgs.length-1];
     if(last && !last.dataset.linksAdded) {
       last.innerHTML += getTicketSitesHtml();
-      last.dataset.linksAdded = 'true';
+      last.dataset.linksAdded='true';
     }
   }, 500);
 }
@@ -439,7 +385,7 @@ async function sendMessageThenAppendLinks() {
 function addMessage(role, content) {
   const chatArea = document.getElementById('chatArea');
   const div = document.createElement('div');
-  div.className = `message ${role}`;
+  div.className='message '+role;
   div.innerHTML = formatMessage(content);
   chatArea.appendChild(div);
   chatArea.scrollTop = chatArea.scrollHeight;
@@ -471,62 +417,50 @@ async function sendMessage() {
   const text = input.value.trim();
   if(!text && !selectedImageBase64) return;
   input.value=''; autoResize(input);
-  
+
   const L = T[currentLang];
   let userContent = [];
-  
+
   if(selectedImageBase64) {
     userContent.push({type:"image",source:{type:"base64",media_type:"image/jpeg",data:selectedImageBase64}});
-    addMessage('user', (text||'') + ' ' + L.photoAdded);
+    addMessage('user',(text||'')+' '+L.photoAdded);
   } else {
-    addMessage('user', text);
+    addMessage('user',text);
   }
-  
+
   if(text) userContent.push({type:"text",text});
   else if(selectedImageBase64) userContent.push({type:"text",text:L.photoAnalyze});
-  
+
   removeImage();
-  conversationHistory.push({role:"user", content: userContent.length===1&&userContent[0].type==='text' ? text : userContent});
-  
-  isLoading = true;
+  conversationHistory.push({role:"user", content: userContent.length===1&&userContent[0].type==='text'?text:userContent});
+
+  isLoading=true;
   showTyping();
-  
+
   const now = new Date();
   const dateStr = now.toLocaleDateString('tr-TR',{day:'numeric',month:'long',year:'numeric'});
   const timeStr = now.toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'});
-  const locInfo = userLocation ? `Konum: ${userLocation.name}, GPS: ${userLocation.lat},${userLocation.lon}, Ulke kodu: ${userLocation.countryCode}` : 'Konum yok';
+  const locInfo = userLocation ? 'Konum: '+userLocation.name+', GPS: '+userLocation.lat+','+userLocation.lon+', Ulke kodu: '+userLocation.countryCode : 'Konum yok';
 
-  const systemPrompt = `Sen USZMate — USZ Digital kisisel AI asistani.
-Bugun: ${dateStr}, Saat: ${timeStr}.
-${locInfo}.
-Kullanici ${L.systemLang} konusuyor, sen de MUTLAKA ${L.systemLang} dilinde cevap ver.
-
-Her zaman web arastirmasi yap ve GUNCEL bilgi getir.
-
-ONEMLI KURALLAR:
-- Sinema/tiyatro/konser sorgularinda KESINLIKLE HICBIR LINK YAZMA. Ne film linki, ne bilet linki, hicbir link. Sadece bilgi ver.
-- Diger sorgularda: firma adi, adres, telefon ve web sitesi linkini ver. Max 5 sonuc.
-- Ucus fiyatlarini DOLAR $ olarak goster.
-- Gecmis tarihli etkinlik gosterme.
-- Kisa ve net cevaplar ver.`;
+  const systemPrompt = 'Sen USZMate — USZ Digital kisisel AI asistani.\nBugun: '+dateStr+', Saat: '+timeStr+'.\n'+locInfo+'.\nKullanici '+L.systemLang+' konusuyor, sen de MUTLAKA '+L.systemLang+' dilinde cevap ver.\n\nHer zaman web arastirmasi yap ve GUNCEL bilgi getir.\n\nONEMLI: Sinema, tiyatro, konser sorgularinda KESINLIKLE HICBIR LINK YAZMA. Sadece bilgi ver.\nDiger sorgularda: firma adi, adres, telefon ve web sitesi. Max 5 sonuc.\nUcus fiyatlarini DOLAR $ goster.\nGecmis tarihli etkinlik gosterme.';
 
   try {
-    const response = await fetch('/api/chat', {
+    const response = await fetch('/api/chat',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({system: systemPrompt, messages: conversationHistory})
+      body: JSON.stringify({system:systemPrompt, messages:conversationHistory})
     });
     const data = await response.json();
     hideTyping();
     const reply = data.reply || L.connErr;
     addMessage('ai', reply);
-    conversationHistory.push({role:"assistant", content: reply});
-  } catch(err) {
+    conversationHistory.push({role:"assistant", content:reply});
+  } catch {
     hideTyping();
     addMessage('ai', T[currentLang].connErr);
   }
-  
-  isLoading = false;
+
+  isLoading=false;
 }
 
 function autoResize(el) { el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,120)+'px'; }
@@ -541,13 +475,13 @@ function handleImage(event) {
 function removeImage() { selectedImageBase64=null; document.getElementById('imagePreviewWrap').style.display='none'; document.getElementById('imagePreview').src=''; }
 
 function toggleMic() {
-  const L = T[currentLang];
+  const L=T[currentLang];
   if(!('webkitSpeechRecognition' in window)&&!('SpeechRecognition' in window)){addMessage('ai',L.noMic);return;}
-  const btn = document.getElementById('micBtn');
+  const btn=document.getElementById('micBtn');
   if(isRecording){recognition.stop();isRecording=false;btn.classList.remove('recording');btn.textContent='🎤';return;}
-  const SR = window.SpeechRecognition||window.webkitSpeechRecognition;
-  recognition = new SR();
-  recognition.lang = currentLang==='tr'?'tr-TR':currentLang==='en'?'en-US':'ru-RU';
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  recognition=new SR();
+  recognition.lang=currentLang==='tr'?'tr-TR':currentLang==='en'?'en-US':'ru-RU';
   recognition.interimResults=false; recognition.maxAlternatives=1;
   recognition.onstart=()=>{isRecording=true;btn.classList.add('recording');btn.textContent='⏹';};
   recognition.onresult=e=>{const t=e.results[0][0].transcript;document.getElementById('textInput').value=t;autoResize(document.getElementById('textInput'));sendMessage();};
